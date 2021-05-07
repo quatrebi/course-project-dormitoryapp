@@ -1,0 +1,17 @@
+D:\Documents\Visual Studio\DormitoryApp\bin\Release\DormitoryApp.exe.config
+D:\Documents\Visual Studio\DormitoryApp\bin\Release\DormitoryApp.exe
+D:\Documents\Visual Studio\DormitoryApp\bin\Release\DormitoryApp.pdb
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\DormitoryApp.csprojAssemblyReference.cache
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\MainWindow.g.cs
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\App.g.cs
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\DormitoryApp_MarkupCompile.cache
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\DormitoryApp_MarkupCompile.lref
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\MainWindow.baml
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\DormitoryApp.g.resources
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\DormitoryApp.Properties.Resources.resources
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\DormitoryApp.csproj.GenerateResource.cache
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\DormitoryApp.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\DormitoryApp.exe
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\DormitoryApp.pdb
+D:\Documents\Visual Studio\DormitoryApp\obj\Release\App.baml

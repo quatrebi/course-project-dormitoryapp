@@ -70,42 +70,48 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Account.cs" />
-    <Compile Include="ButtonMark.xaml.cs">
-      <DependentUpon>ButtonMark.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="models\Account.cs" />
     <Compile Include="DormitoryDatabase.cs" />
-    <Compile Include="InputBox.xaml.cs">
-      <DependentUpon>InputBox.xaml</DependentUpon>
+    <Compile Include="lib\RelayCommand.cs" />
+    <Compile Include="models\MenuButton.cs" />
+    <Compile Include="models\StatusHandler.cs" />
+    <Compile Include="viewmodels\LoginViewModel.cs" />
+    <Compile Include="lib\WindowBlur.cs" />
+    <Compile Include="views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowBlur.cs" />
-    <Page Include="ButtonMark.xaml">
+    <Page Include="resources\langs\ru-ru.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InputBox.xaml">
+    <Page Include="resources\themes\dark.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginPage.xaml">
+    <Page Include="resources\themes\theme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="resources\themes\light.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="viewmodels\MainViewModel.cs" />
+    <Compile Include="views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Page Include="views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -130,26 +136,28 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="resources\fonts\Gardens CM.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icons\bold-button.png" />
-    <EmbeddedResource Include="Icons\copy-text.png" />
-    <Resource Include="Icons\cross.png" />
-    <EmbeddedResource Include="Icons\italic-button.png" />
-    <EmbeddedResource Include="Icons\new.png" />
-    <EmbeddedResource Include="Icons\paste.png" />
-    <EmbeddedResource Include="Icons\save-files.png" />
-    <EmbeddedResource Include="Icons\store-files.png" />
+    <Resource Include="resources\images\icons\bold-button.png" />
+    <EmbeddedResource Include="resources\images\icons\copy-text.png" />
+    <Resource Include="resources\images\icons\cross.png" />
+    <Resource Include="resources\images\icons\italic-button.png" />
+    <EmbeddedResource Include="resources\images\icons\new.png" />
+    <EmbeddedResource Include="resources\images\icons\paste.png" />
+    <EmbeddedResource Include="resources\images\icons\save-files.png" />
+    <EmbeddedResource Include="resources\images\icons\store-files.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\default-user.png" />
+    <Resource Include="resources\images\default-user.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\loading.gif" />
+    <Resource Include="resources\images\loading.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
+using System.Windows.Threading;
 
 namespace DormitoryApp
 {
@@ -16,8 +15,7 @@ namespace DormitoryApp
     public partial class App : Application
     {
         public const double GoldenRatio = 1.61803399;
-        public static Account account;
-        public static DormitoryDatabase db;
+        public static DormitoryDatabase db = new DormitoryDatabase();
 
         public static void Window_DragMove(object sender, MouseButtonEventArgs e)
             => (sender as Window).DragMove();
@@ -33,5 +31,14 @@ namespace DormitoryApp
         //    await db.Accounts.ForEachAsync(p => tmp.Append(p));
         //    return tmp;
         //}
+    }
+
+    public static class UiRefresh
+    {
+        private static Action EmptyDelegate = delegate () { };
+        public static void Refresh(this UIElement uiElement)
+        {
+            uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+        }
     }
 }

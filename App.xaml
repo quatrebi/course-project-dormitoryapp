@@ -9,7 +9,6 @@
                 <ResourceDictionary Source="resources/langs/ru-ru.xaml" />
                 <ResourceDictionary Source="resources/themes/light.xaml" />
                 <ResourceDictionary Source="resources/themes/theme.xaml" />
-                <ResourceDictionary Source="resources/themes/dark.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

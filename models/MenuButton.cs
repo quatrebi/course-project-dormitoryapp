@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace DormitoryApp.Models
 {
@@ -9,11 +11,18 @@ namespace DormitoryApp.Models
         private string m_iconSource;
         private string m_text;
 
+        [Key]
+        public int UID { get; set; }
+
+        [Required]
+        public short Permission { get; set; }
+
         public Uri URI
         {
             get { return new Uri($"/DormitoryApp;component/resources/images/icons/{IconSource}", UriKind.Relative); }
         }
 
+        [Required]
         public string IconSource
         {
             get { return m_iconSource; }
@@ -24,9 +33,10 @@ namespace DormitoryApp.Models
             }
         }
 
+        [Required]
         public string Text
         {
-            get { return m_text; }
+            get { return Application.Current.TryFindResource($"i18n-{m_text}") as string; }
             set
             {
                 m_text = value;

@@ -2,14 +2,18 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="i18n-Title">Общежитие</sys:String>
-    <sys:String x:Key="i18n-Success">Успешно</sys:String>
-    <sys:String x:Key="i18n-Failure">Безуспешно</sys:String>
+
+    <sys:String x:Key="i18n-Home">Домашняя страница</sys:String>
+    <sys:String x:Key="i18n-Settings">Настройки</sys:String>
+    <sys:String x:Key="i18n-Schedule">Календарь</sys:String>
+
 
     <sys:String x:Key="i18n-EnterData">Введите данные</sys:String>
-
     <sys:String x:Key="i18n-Login">Логин</sys:String>
     <sys:String x:Key="i18n-Password">Пароль</sys:String>
     <sys:String x:Key="i18n-Auth">Авторизация</sys:String>
+    <sys:String x:Key="i18n-Success">Успешно</sys:String>
+    <sys:String x:Key="i18n-Failure">Безуспешно</sys:String>
 
     <sys:String x:Key="i18n-Next">Далее</sys:String>
     <sys:String x:Key="i18n-Enter">Войти</sys:String>

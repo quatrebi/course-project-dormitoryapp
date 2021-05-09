@@ -2,53 +2,65 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace DormitoryApp.Models
 {
-    public class Account : INotifyPropertyChanged
+    public class Human : INotifyPropertyChanged
     {
-        private string m_username;
-        private string m_password;
+        private string m_surname;
+        private string m_name;
+        private string m_patronymic;
 
         [Key]
         public int UID { get; set; }
 
         [Required]
-        public string Username
+        public string Surname
         {
-            get { return m_username; }
+            get { return m_surname; }
             set
             {
-                m_username = value;
-                OnPropertyChanged("Username");
+                m_surname = value;
+                OnPropertyChanged("Surname");
             }
         }
 
         [Required]
-        public string Password
+        public string Name
         {
-            get { return m_password; }
+            get { return m_name; }
             set
             {
-                m_password = value;
-                OnPropertyChanged("Password");
+                m_name = value;
+                OnPropertyChanged("Name");
             }
         }
 
         [Required]
-        public short Permission { get; set; }
+        public string Patronymic
+        {
+            get { return m_patronymic; }
+            set
+            {
+                m_patronymic = value;
+                OnPropertyChanged("Patronymic");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public override string ToString()
+        {
+            return $"{Surname} {Name} {Patronymic}";
         }
     }
 }

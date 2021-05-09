@@ -4,6 +4,11 @@
     <Color x:Key="LightBlueColor">#DDE1F5</Color>
     <Color x:Key="LightPinkColor">#F8E6FF</Color>
     <Color x:Key="SkyBlueColor">#BCD5EE</Color>
+    <Color x:Key="GreyBlueColor">#82869D</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource DarkBlueColor}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource LightBlueColor}"/>
+    <SolidColorBrush x:Key="SubPrimaryBrush" Color="{DynamicResource GreyBlueColor}"/>
 
     <LinearGradientBrush x:Key="GlassBrush" StartPoint="-0.125, -0.125" EndPoint="1.125, 1.125">
         <LinearGradientBrush.GradientStops>
@@ -30,8 +35,8 @@
     <LinearGradientBrush x:Key="DefaultGradient" StartPoint="0.25, 0.25" EndPoint="0.75, 0.75">
         <LinearGradientBrush.GradientStops>
             <GradientStopCollection>
-                <GradientStop Color="{StaticResource LightPinkColor}" Offset="0"/>
-                <GradientStop Color="{StaticResource SkyBlueColor}" Offset="1"/>
+                <GradientStop Color="{DynamicResource LightPinkColor}" Offset="0"/>
+                <GradientStop Color="{DynamicResource SkyBlueColor}" Offset="1"/>
             </GradientStopCollection>
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>

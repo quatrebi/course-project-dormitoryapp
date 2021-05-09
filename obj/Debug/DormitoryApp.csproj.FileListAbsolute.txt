@@ -28,3 +28,6 @@ D:\Documents\Visual Studio\DormitoryApp\obj\Debug\views\MainView.g.cs
 D:\Documents\Visual Studio\DormitoryApp\obj\Debug\views\MainView.baml
 D:\Documents\Visual Studio\DormitoryApp\obj\Debug\resources\themes\dark.baml
 D:\Documents\Visual Studio\DormitoryApp\obj\Debug\resources\themes\light.baml
+D:\Documents\Visual Studio\DormitoryApp\obj\Debug\DormitoryApp.csprojAssemblyReference.cache
+D:\Documents\Visual Studio\DormitoryApp\obj\Debug\DormitoryApp.Migrations.InitialCreate.resources
+D:\Documents\Visual Studio\DormitoryApp\obj\Debug\DormitoryApp.Migrations.mig1.resources

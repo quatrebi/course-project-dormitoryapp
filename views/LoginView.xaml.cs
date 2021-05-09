@@ -20,7 +20,7 @@ namespace DormitoryApp.Views
         private void PasswordInput_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (DataContext == null) return;
-            (DataContext as LoginViewModel).AuthAccount.Password = PasswordInput.Password;
+            (DataContext as LoginViewModel).CurrentAccount.Password = PasswordInput.Password;
         }
 
         //CommandParameter="{Binding AuthAccount}" Command="{Binding AuthCommand}"

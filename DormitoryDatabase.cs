@@ -8,5 +8,7 @@ namespace DormitoryApp
         public DormitoryDatabase() : base("DormitoryDB") { }
 
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Human> Humans { get; set; }
+        public DbSet<MenuButton> MenuButtons { get; set; }
     }
 }

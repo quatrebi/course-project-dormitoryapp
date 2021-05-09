@@ -3,35 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:interop="clr-namespace:Walterlv.Demo.Interop"
+        xmlns:viewmodels="clr-namespace:DormitoryApp.ViewModels"
         xmlns:local="clr-namespace:DormitoryApp.Views"
-        xmlns:interop="clr-namespace:Walterlv.Demo.Interop" xmlns:viewmodels="clr-namespace:DormitoryApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         interop:WindowBlur.IsEnabled="True" 
         
         mc:Ignorable="d"
         WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
         Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <Style TargetType="{x:Type ListBoxItem}">
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="ContentTemplate">
-                        <Setter.Value>
-                            <DataTemplate>
-                                <Border Margin="0, 0, 0, 18" CornerRadius="20" BorderThickness="0" Background="{StaticResource DefaultGradient}">
-                                    <Button Padding="16, 4, 65, 4" Style="{x:Null}" Foreground="{StaticResource PrimaryBrush}" Background="{x:Null}" BorderThickness="0">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Width="24" Source="{Binding URI}"/>
-                                            <TextBlock FontSize="20" Margin="18, 0" Text="{Binding Text}"/>
-                                        </StackPanel>
-                                    </Button>
-                                </Border>
-                            </DataTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
     <Border BorderThickness="1" BorderBrush="#7FFFFFFF">
         <DockPanel>
             <StackPanel DockPanel.Dock="Left" Width="303" Background="{DynamicResource FrostedGlassBrush}">
@@ -40,21 +20,60 @@
                 </StackPanel.Effect>
 
                 <TextBlock Margin="24" Style="{DynamicResource TitleText}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" DataContext="{Binding CurrentHuman}">
+                    <Ellipse Margin="24, 0, 18, 0" Width="64" Height="64" Stroke="{DynamicResource PrimaryBrush}">
+                        <Ellipse.Effect>
+                            <DropShadowEffect BlurRadius="3" Direction="-90" Opacity="0.18" ShadowDepth="3"/>
+                        </Ellipse.Effect>
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/resources/images/default-user.png" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock FontSize="16" Text="{Binding}"/>
+                        <TextBlock Style="{StaticResource SubText}" Text="Общежитие №2"/>
+                    </StackPanel>
+                </StackPanel>
                 <ListBox ItemsSource="{Binding Buttons}" SelectedItem="{Binding SelectedButton}"
                          HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
-                         Background="{x:Null}" BorderBrush="{x:Null}">
+                         Margin="0, 24" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Margin" Value="32, 0, -32, 0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                        <Border CornerRadius="20" BorderThickness="1" Background="{TemplateBinding Background}">
+                                            <RadioButton Padding="24, 8" IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                         Foreground="{StaticResource PrimaryBrush}" Background="{x:Null}" BorderThickness="0">
+                                                <RadioButton.Template>
+                                                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                                                        <ContentControl Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}"/>
+                                                    </ControlTemplate>
+                                                </RadioButton.Template>
+                                                <ContentPresenter/>
+                                            </RadioButton>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource DefaultGradient}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Button Padding="16, 4, 65, 4" Style="{x:Null}" Foreground="{StaticResource PrimaryBrush}" Background="{x:Null}" BorderThickness="0">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Width="24" Source="{Binding URI}"/>
-                                    <TextBlock FontSize="20" Margin="18, 0" Text="{Binding Text}"/>
-                                </StackPanel>
-                            </Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="24" Source="{Binding URI}"/>
+                                <TextBlock Margin="18, 0" FontSize="20" Text="{Binding Text}"/>
+                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                
             </StackPanel>
             <StackPanel DockPanel.Dock="Right" Background="{DynamicResource GlassBrush}">
             </StackPanel>

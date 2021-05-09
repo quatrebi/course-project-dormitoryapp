@@ -52,7 +52,7 @@
             <StackPanel Margin="32" Grid.Row="1" VerticalAlignment="Center">
                 <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{StaticResource i18n-Login}"/>
                 <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{StaticResource DefaultGradient}" Padding="16, 8">
-                    <TextBox x:Name="UsernameInput" Text="{Binding AuthAccount.Username}"/>
+                    <TextBox x:Name="UsernameInput" Text="{Binding CurrentAccount.Username}"/>
                 </Border>
                 <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{StaticResource i18n-Password}"/>
                 <Border CornerRadius="20" Background="{StaticResource DefaultGradient}" Padding="16, 8">
@@ -61,7 +61,7 @@
             </StackPanel>
             <StackPanel Margin="24" Grid.Row="2" HorizontalAlignment="Center">
                 <Button Content="{StaticResource i18n-Enter}" IsDefault="True"
-                        CommandParameter="{Binding AuthAccount}" Command="{Binding AuthCommand}"/>
+                        CommandParameter="{Binding CurrentAccount}" Command="{Binding AuthCommand}"/>
             </StackPanel>
             <TextBlock Margin="32" Grid.Row="2" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{Binding Status.Message, UpdateSourceTrigger=PropertyChanged}"/>
             <Grid x:Name="LoadingBox" Style="{StaticResource VisibilityTrigger}" Grid.RowSpan="3" Background="#B2FFFFFF" Visibility="Hidden">

@@ -2,6 +2,7 @@
 using DormitoryApp.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -25,20 +26,20 @@ namespace DormitoryApp.ViewModels
             }
         }
 
-        private Account m_authAccount;
-        public Account AuthAccount
+        private Account m_currentAccount;
+        public Account CurrentAccount
         {
-            get { return m_authAccount; }
+            get { return m_currentAccount; }
             set
             {
-                m_authAccount = value;
-                OnPropertyChanged("AuthAccount");
+                m_currentAccount = value;
+                OnPropertyChanged("CurrentAccount");
             }
         }
 
         public LoginViewModel()
         {
-            AuthAccount = new Account();
+            CurrentAccount = new Account();
             Status = new LoginStatus();
         }
 
@@ -59,14 +60,29 @@ namespace DormitoryApp.ViewModels
                             var acc = obj as Account;
 
                             var founded = (from a in App.db.Accounts
-                                           where a.Username == AuthAccount.Username
-                                           where a.Password == AuthAccount.Password
+                                           where a.Username == CurrentAccount.Username
+                                           where a.Password == CurrentAccount.Password
                                            select a).ToArray();
 
                             if (founded.Length == 0) { Status.ID = (int)LoginStatusID.Failure; return; }
                             else Status.ID = (int)LoginStatusID.Success;
+                            acc = founded[0];
 
-                            MainView main = new MainView();
+                            MainView main = new MainView()
+                            {
+                                DataContext = new MainViewModel()
+                                {
+                                    CurrentHuman = (from h in App.db.Humans
+                                                    where h.UID == acc.UID
+                                                    select h).ToArray()[0],
+                                    Buttons = new ObservableCollection<MenuButton>
+                                    (
+                                        (from btn in App.db.MenuButtons
+                                         where (acc.Permission & btn.Permission) != 0
+                                         select btn).ToArray()
+                                    )
+                                }
+                            };
                             Application.Current.MainWindow.Close();
                             Application.Current.MainWindow = main;
                             main.Show();

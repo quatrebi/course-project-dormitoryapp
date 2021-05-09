@@ -1,0 +1,4 @@
+Migrations/*
+.vs/*
+obj/*
+bin/*

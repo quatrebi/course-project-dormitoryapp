@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace DormitoryApp.ViewModels
 {
@@ -18,18 +19,18 @@ namespace DormitoryApp.ViewModels
             }
         }
 
-        public ObservableCollection<MenuButton> Buttons { get; set; }
-
-        public MainViewModel()
+        private Human m_currentHuman;
+        public Human CurrentHuman
         {
-            Buttons = new ObservableCollection<MenuButton>()
+            get { return m_currentHuman; }
+            set
             {
-                new MenuButton() {IconSource = "bold-button.png", Text = "Bold Button" },
-                new MenuButton() {IconSource = "italic-button.png", Text = "Italic Button" },
-            };
-            SelectedButton = Buttons[1];
+                m_currentHuman = value;
+                OnPropertyChanged("CurrentHuman");
+            }
         }
 
+        public ObservableCollection<MenuButton> Buttons { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

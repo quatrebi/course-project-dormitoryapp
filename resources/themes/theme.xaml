@@ -1,7 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource DarkBlueColor}"/>
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource LightBlueColor}"/>
     <DropShadowEffect x:Key="DropShadow" BlurRadius="3" Direction="-90" Opacity="0.18" ShadowDepth="3"/>
 
     <!-- Styles -->
@@ -9,18 +7,23 @@
     <Style TargetType="{x:Type Window}" x:Key="DefaultStyle">
         <Setter Property="FontFamily" Value="/DormitoryApp;component/resources/fonts/#Gardens CM"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockStyle">
         <Setter Property="FontFamily" Value="/DormitoryApp;component/resources/fonts/#Gardens CM"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
     </Style>
-    
+
     <Style TargetType="{x:Type TextBlock}" x:Key="TitleText">
         <Setter Property="Text" Value="{DynamicResource i18n-Title}"/>
         <Setter Property="FontSize" Value="36"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="SubText">
+        <Setter Property="Foreground" Value="{DynamicResource SubPrimaryBrush}"/>
+        <Setter Property="FontSize" Value="12"/>
     </Style>
 
     <Style TargetType="{x:Type TextBox}">
@@ -31,8 +34,13 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
-    
-    <Style TargetType="{x:Type Button}">
+
+    <Style TargetType="{x:Type Button}" x:Key="TransparentButton">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource TransparentButton}">
         <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
 
         <Setter Property="Template">

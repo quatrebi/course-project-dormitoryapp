@@ -8,7 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/icons/home.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/icons/settings.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dormitorydb.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dormitorydb.edmx.sql")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dormitorydb.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dormitorymodel.tt")]
 
 

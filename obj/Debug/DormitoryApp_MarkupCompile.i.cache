@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Documents\Visual Studio\DormitoryApp\App.xaml
-6-531122184
+15-167082812
+4-1070596638
+431396104729
+201523374225
+resources\langs\ru-ru.xaml;resources\themes\dark.xaml;resources\themes\theme.xaml;resources\themes\light.xaml;views\DormitoriesView.xaml;views\ErrorView.xaml;views\HomeView.xaml;views\LoginView.xaml;views\MainView.xaml;views\ProfileView.xaml;views\RegistrationView.xaml;views\RoomsView.xaml;views\RoomView.xaml;views\SettingsView.xaml;views\HumansView.xaml;
 
-21-354566178
-191308987489
-resources\langs\ru-ru.xaml;resources\themes\dark.xaml;resources\themes\theme.xaml;resources\themes\light.xaml;views\LoginView.xaml;views\MainView.xaml;
-
-False
+True
 

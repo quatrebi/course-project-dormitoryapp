@@ -49,6 +49,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,25 +71,99 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Migrations\202105091911292_InitialCreate.cs" />
-    <Compile Include="Migrations\202105091911292_InitialCreate.designer.cs">
-      <DependentUpon>202105091911292_InitialCreate.cs</DependentUpon>
+    <Compile Include="Account.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105091931061_mig1.cs" />
-    <Compile Include="Migrations\202105091931061_mig1.designer.cs">
-      <DependentUpon>202105091931061_mig1.cs</DependentUpon>
+    <Compile Include="Citizen.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="models\Account.cs" />
-    <Compile Include="DormitoryDatabase.cs" />
+    <Compile Include="Dormitory.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DormitoryDatabaseInit.cs" />
+    <Compile Include="DormitoryDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DormitoryDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DormitoryDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DormitoryDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DormitoryDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DormitoryDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DormitoryInfo.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DormitoryModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeLog.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Human.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenuButtonModel.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="lib\RelayCommand.cs" />
-    <Compile Include="models\Human.cs" />
     <Compile Include="models\MenuButton.cs" />
     <Compile Include="models\StatusHandler.cs" />
+    <Compile Include="Room.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UniversityInfo.cs">
+      <DependentUpon>DormitoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="viewmodels\DormitoriesViewModel.cs" />
+    <Compile Include="viewmodels\ProfileViewModel.cs">
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
+    <Compile Include="viewmodels\RegistrationViewModel.cs" />
+    <Compile Include="viewmodels\HomeViewModel.cs" />
     <Compile Include="viewmodels\LoginViewModel.cs" />
     <Compile Include="lib\WindowBlur.cs" />
+    <Compile Include="viewmodels\HumansViewModel.cs" />
+    <Compile Include="viewmodels\RoomsViewModel.cs" />
+    <Compile Include="views\DormitoriesView.xaml.cs">
+      <DependentUpon>DormitoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\ErrorView.xaml.cs">
+      <DependentUpon>ErrorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\RegistrationView.xaml.cs">
+      <DependentUpon>RegistrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\RoomsView.xaml.cs">
+      <DependentUpon>RoomsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\RoomView.xaml.cs">
+      <DependentUpon>RoomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="views\HumansView.xaml.cs">
+      <DependentUpon>HumansView.xaml</DependentUpon>
     </Compile>
     <Page Include="resources\langs\ru-ru.xaml">
       <SubType>Designer</SubType>
@@ -103,6 +178,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="resources\themes\light.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\DormitoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\ErrorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,6 +209,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="views\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\RegistrationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\RoomsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\RoomView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\HumansView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -137,16 +248,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202105091911292_InitialCreate.resx">
-      <DependentUpon>202105091911292_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105091931061_mig1.resx">
-      <DependentUpon>202105091931061_mig1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="DormitoryDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DormitoryDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ClassDiagramm.cd" />
+    <None Include="DormitoryDB.edmx.diagram">
+      <DependentUpon>DormitoryDB.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -161,11 +274,32 @@
     <Resource Include="resources\images\default-user.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="resources\images\icons\settings.png" />
     <Resource Include="resources\images\loading.gif" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\images\icons\home.png" />
-    <Resource Include="resources\images\icons\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DormitoryDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DormitoryDB.Context.cs</LastGenOutput>
+      <DependentUpon>DormitoryDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="DormitoryDB.edmx.sql" />
+    <Content Include="DormitoryDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DormitoryDB.cs</LastGenOutput>
+      <DependentUpon>DormitoryDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="DormitoryModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DormitoryModel.cs</LastGenOutput>
+      <DependentUpon>DormitoryDB.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,18 +1,16 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace DormitoryApp.Models
 {
-    public abstract class StatusHandler : INotifyPropertyChanged
+    public class StatusHandler : INotifyPropertyChanged
     {
-        protected string[] m_messages = new string[] { "Unknown" };
         private int m_id = 0;
+        protected string[] m_messages = new string[] { "Unknown" };
 
-        public string Message
-        {
-            get { return Application.Current.TryFindResource($"i18n-{m_messages[ID]}") as string; }
-        }
+        public string Message => Application.Current.TryFindResource($"i18n-{m_messages[ID]}") as string;
 
         public int ID
         {
@@ -25,26 +23,19 @@ namespace DormitoryApp.Models
             }
         }
 
+        public StatusHandler(Type enumType) => m_messages = Enum.GetNames(enumType);
+
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+        public void OnPropertyChanged([CallerMemberName] string prop = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }
 
     public enum LoginStatusID : int
     {
-        Unknown = 0,
-        Auth, Success, Failure
+        EnterData = 0, Auth, Success, Failure, UnknownError
     }
 
-    public class LoginStatus : StatusHandler
+    public enum ErrorStatusID : int
     {
-        public LoginStatus()
-        {
-            m_messages = new string[] { "EnterData", "Auth", "Succces", "Failure" };
-        }
-
+        NullReference = 0
     }
 }

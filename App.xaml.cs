@@ -15,12 +15,9 @@ namespace DormitoryApp
     public partial class App : Application
     {
         public const double GoldenRatio = 1.61803399;
-        public static DormitoryDatabase db = new DormitoryDatabase();
 
-        public static void Window_DragMove(object sender, MouseButtonEventArgs e)
-            => (sender as Window).DragMove();
-        private void AppShutdown(object sender, RoutedEventArgs e)
-            => Current.Shutdown();
+        public static void Window_DragMove(object sender, MouseButtonEventArgs e) => (sender as Window).DragMove();
+        private void AppShutdown(object sender, RoutedEventArgs e) => Current.Shutdown();
 
         public static string GetHash(string input)
             => Convert.ToBase64String(MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input)));
@@ -33,12 +30,12 @@ namespace DormitoryApp
         //}
     }
 
-    public static class UiRefresh
-    {
-        private static Action EmptyDelegate = delegate () { };
-        public static void Refresh(this UIElement uiElement)
-        {
-            uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
-        }
-    }
+    //public static class UiRefresh
+    //{
+    //    private static Action EmptyDelegate = delegate () { };
+    //    public static void Refresh(this UIElement uiElement)
+    //    {
+    //        uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+    //    }
+    //}
 }

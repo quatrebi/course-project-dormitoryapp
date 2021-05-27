@@ -4,12 +4,19 @@
 
     <!-- Styles -->
 
-    <Style TargetType="{x:Type Window}" x:Key="DefaultStyle">
+    <Style TargetType="{x:Type Window}" x:Key="DefaultWindowStyle">
         <Setter Property="FontFamily" Value="/DormitoryApp;component/resources/fonts/#Gardens CM"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
     </Style>
 
+    <Style TargetType="{x:Type Page}" x:Key="DefaultPageStyle">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="FontFamily" Value="/DormitoryApp;component/resources/fonts/#Gardens CM"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
+    </Style>
+    
     <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockStyle">
         <Setter Property="FontFamily" Value="/DormitoryApp;component/resources/fonts/#Gardens CM"/>
         <Setter Property="FontSize" Value="16"/>
@@ -46,12 +53,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Padding="32, 6" CornerRadius="20" BorderThickness="0" Effect="{StaticResource DropShadow}" Background="{StaticResource PrimaryBrush}">
+                    <Border Padding="{TemplateBinding Padding}" CornerRadius="20" BorderThickness="0" Effect="{StaticResource DropShadow}" Background="{StaticResource PrimaryBrush}">
                         <ContentControl FontSize="18" Foreground="{StaticResource SecondaryBrush}" Content="{TemplateBinding Content}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ListBox}">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
     <!-- ControlTemplates -->

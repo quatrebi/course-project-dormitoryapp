@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="DormitoryApp.Views.DormitoriesView" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>views\DormitoriesView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.Views.HumansView" BaseTypeListCollapsed="true">
+    <Position X="5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>views\HumansView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.Views.HumanDataTemplateSelector">
+    <Position X="3.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>views\HumansView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.Views.LoginView" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>views\LoginView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.Views.MainView" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>views\MainView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.Views.ProfileView" BaseTypeListCollapsed="true">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>views\ProfileView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.Views.RegistrationView" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>views\RegistrationView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.Views.RoomsView" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>views\RoomsView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.ViewModels.DormitoriesViewModel" BaseTypeListCollapsed="true">
+    <Position X="7" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIABAAAAAAAAAAAIAAAAACAgQAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>viewmodels\DormitoriesViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.ViewModels.HumansViewModel" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAEAAAAAAIAAAAAAQgAAAAAAAAgAAAAQAAAA=</HashCode>
+      <FileName>viewmodels\HumansViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.ViewModels.LoginViewModel" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAGAgAAAAQAYAAAAAAAgAAAgQAAAAAAAAAAAAA=</HashCode>
+      <FileName>viewmodels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.ViewModels.MainViewModel" BaseTypeListCollapsed="true">
+    <Position X="7" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAiAAAAAAgAAAAIAAQIAAAgQAAAAAAQAAAAIAAAEA=</HashCode>
+      <FileName>viewmodels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.ViewModels.ProfileViewModel" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAgAAAAAAAAIAAAAAAAoAAAAQIAAAAAAIAAAAA=</HashCode>
+      <FileName>viewmodels\ProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.ViewModels.RegistrationViewModel" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECIATCAAAAQAgAAAIAAAAAAAgQAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>viewmodels\RegistrationViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.Models.MenuButton">
+    <Position X="1.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\MenuButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.Models.StatusHandler" BaseTypeListCollapsed="true">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAIAAAAAAAgAAAAAQAAAAAIAAAAAA=</HashCode>
+      <FileName>models\StatusHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DormitoryApp.DormitoryDatabase">
+    <Position X="15.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAgAAAAAAAAACAAAAAAAACEQAAAACAAIAAAAQAAAA=</HashCode>
+      <FileName>DormitoryDB.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.Account">
+    <Position X="12.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAQAAAAAAAAAgAAACAAAAAAQAAAA=</HashCode>
+      <FileName>Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.Citizen">
+    <Position X="12.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Citizen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.Dormitory">
+    <Position X="14" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAkAIAAAAAAAABAAIAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dormitory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.DormitoryInfo">
+    <Position X="12.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAABAAAAAECIAAAQIAAAAAAAAAAkA=</HashCode>
+      <FileName>DormitoryInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.Employee">
+    <Position X="14" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAEAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.EmployeeLog">
+    <Position X="14" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAJAAAAAECAAAAAAAAAAAAABAAEA=</HashCode>
+      <FileName>EmployeeLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.Human">
+    <Position X="12.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAQABAAAAAAAAAAAAAAAgEA=</HashCode>
+      <FileName>Human.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.MenuButtonModel">
+    <Position X="3.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAgAAAAAAAAEAAAAAAAAgAAAACAAAAAAAAAA=</HashCode>
+      <FileName>MenuButtonModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.Room">
+    <Position X="15.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAEAAAAAAAgAAEAAAAAAAIAAAQAAAAAAAAAgAAA=</HashCode>
+      <FileName>Room.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.UniversityInfo">
+    <Position X="14" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAIAAAAAAAAAAAAACAAIAAgAAAAAAAgA=</HashCode>
+      <FileName>UniversityInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DormitoryApp.DormitoryDatabaseInit">
+    <Position X="15.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DormitoryDatabaseInit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="DormitoryApp.Models.LoginStatusID">
+    <Position X="5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAggAAACAAAAAABAAAAA=</HashCode>
+      <FileName>models\StatusHandler.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

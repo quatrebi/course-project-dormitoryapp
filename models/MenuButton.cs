@@ -1,54 +1,23 @@
 ﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
-using System.Windows;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DormitoryApp.Models
 {
-    public class MenuButton : INotifyPropertyChanged
+    public class MenuButton : MenuButtonModel
     {
-        private string m_iconSource;
-        private string m_text;
-
-        [Key]
-        public int UID { get; set; }
-
-        [Required]
-        public short Permission { get; set; }
-
-        public Uri URI
+        public MenuButton(MenuButtonModel model)
         {
-            get { return new Uri($"/DormitoryApp;component/resources/images/icons/{IconSource}", UriKind.Relative); }
+            this.MBID = model.MBID;
+            this.ImageSource = model.ImageSource;
+            this.Caption = model.Caption;
+            this.Permission = model.Permission;
+            this.ViewName = model.ViewName;
         }
 
-        [Required]
-        public string IconSource
-        {
-            get { return m_iconSource; }
-            set
-            {
-                m_iconSource = value;
-                OnPropertyChanged("IconSource");
-            }
-        }
-
-        [Required]
-        public string Text
-        {
-            get { return Application.Current.TryFindResource($"i18n-{m_text}") as string; }
-            set
-            {
-                m_text = value;
-                OnPropertyChanged("Text");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+        public string PageName => App.Current.TryFindResource($"i18n-{Caption}") as string;
+        public Uri URI => new Uri($"/DormitoryApp;component/resources/images/icons/{ImageSource}", UriKind.Relative);
     }
 }

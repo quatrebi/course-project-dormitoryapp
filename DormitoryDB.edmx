@@ -1,0 +1,682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBStoreContainer">
+    <EntitySet Name="MenuButtons" EntityType="DB.Store.MenuButtons" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Accounts" EntityType="DB.Store.Accounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmployeeLogs" EntityType="DB.Store.EmployeeLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DormitoryInfos" EntityType="DB.Store.DormitoryInfos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Dormitories" EntityType="DB.Store.Dormitories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UniversityInfos" EntityType="DB.Store.UniversityInfos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rooms" EntityType="DB.Store.Rooms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Humans" EntityType="DB.Store.Humans" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Humans_Citizen" EntityType="DB.Store.Humans_Citizen" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Humans_Employee" EntityType="DB.Store.Humans_Employee" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CitizenUniversityInfo" Association="DB.Store.CitizenUniversityInfo">
+      <End Role="Citizen" EntitySet="Humans_Citizen" />
+      <End Role="UniversityInfo" EntitySet="UniversityInfos" />
+    </AssociationSet>
+    <AssociationSet Name="CitizenDormitoryInfo" Association="DB.Store.CitizenDormitoryInfo">
+      <End Role="Citizen" EntitySet="Humans_Citizen" />
+      <End Role="DormitoryInfo" EntitySet="DormitoryInfos" />
+    </AssociationSet>
+    <AssociationSet Name="DormitoryInfoDormitory" Association="DB.Store.DormitoryInfoDormitory">
+      <End Role="DormitoryInfo" EntitySet="DormitoryInfos" />
+      <End Role="Dormitory" EntitySet="Dormitories" />
+    </AssociationSet>
+    <AssociationSet Name="RoomDormitoryInfo" Association="DB.Store.RoomDormitoryInfo">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="DormitoryInfo" EntitySet="DormitoryInfos" />
+    </AssociationSet>
+    <AssociationSet Name="RoomEmployeeLog" Association="DB.Store.RoomEmployeeLog">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="EmployeeLog" EntitySet="EmployeeLogs" />
+    </AssociationSet>
+    <AssociationSet Name="AccountHuman" Association="DB.Store.AccountHuman">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Human" EntitySet="Humans" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeDormitoryInfo" Association="DB.Store.EmployeeDormitoryInfo">
+      <End Role="Employee" EntitySet="Humans_Employee" />
+      <End Role="DormitoryInfo" EntitySet="DormitoryInfos" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeEmployeeLog" Association="DB.Store.EmployeeEmployeeLog">
+      <End Role="Employee" EntitySet="Humans_Employee" />
+      <End Role="EmployeeLog" EntitySet="EmployeeLogs" />
+    </AssociationSet>
+    <AssociationSet Name="DormitoryRoom" Association="DB.Store.DormitoryRoom">
+      <End Role="Dormitory" EntitySet="Dormitories" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Citizen_inherits_Human" Association="DB.Store.FK_Citizen_inherits_Human">
+      <End Role="Human" EntitySet="Humans" />
+      <End Role="Citizen" EntitySet="Humans_Citizen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_inherits_Human" Association="DB.Store.FK_Employee_inherits_Human">
+      <End Role="Human" EntitySet="Humans" />
+      <End Role="Employee" EntitySet="Humans_Employee" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MenuButtons">
+    <Key>
+      <PropertyRef Name="MBID" />
+    </Key>
+    <Property Name="MBID" Type="int" Nullable="false" />
+    <Property Name="Caption" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ImageSource" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Permission" Type="smallint" Nullable="false" />
+    <Property Name="ViewName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="AID" />
+    </Key>
+    <Property Name="AID" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Permission" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeLogs">
+    <Key>
+      <PropertyRef Name="ELID" />
+    </Key>
+    <Property Name="ELID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Datetime" Type="datetime" Nullable="false" />
+    <Property Name="RoomRID" Type="int" Nullable="true" />
+    <Property Name="EmployeeHID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DormitoryInfos">
+    <Key>
+      <PropertyRef Name="DIID" />
+    </Key>
+    <Property Name="DIID" Type="int" Nullable="false" />
+    <Property Name="OrderNumber" Type="int" Nullable="true" />
+    <Property Name="CheckInDate" Type="datetime" Nullable="true" />
+    <Property Name="CheckOutDate" Type="datetime" Nullable="true" />
+    <Property Name="DormitoryDID" Type="int" Nullable="true" />
+    <Property Name="RoomRID" Type="int" Nullable="true" />
+    <Property Name="Citizen_HID" Type="int" Nullable="true" />
+    <Property Name="Employee_HID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Dormitories">
+    <Key>
+      <PropertyRef Name="DID" />
+    </Key>
+    <Property Name="DID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumberOfFloors" Type="int" Nullable="false" />
+    <Property Name="RoomsPerFloor" Type="int" Nullable="false" />
+    <Property Name="CitizensPerRoom" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UniversityInfos">
+    <Key>
+      <PropertyRef Name="UIID" />
+    </Key>
+    <Property Name="UIID" Type="int" Nullable="false" />
+    <Property Name="University" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Faculty" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Specialty" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GroupNumber" Type="int" Nullable="false" />
+    <Property Name="Citizen_HID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="int" Nullable="false" />
+    <Property Name="Number" Type="smallint" Nullable="false" />
+    <Property Name="Floor" Type="smallint" Nullable="false" />
+    <Property Name="DormitoryDID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Humans">
+    <Key>
+      <PropertyRef Name="HID" />
+    </Key>
+    <Property Name="HID" Type="int" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Patronymic" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Account_AID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Humans_Citizen">
+    <Key>
+      <PropertyRef Name="HID" />
+    </Key>
+    <Property Name="HID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Humans_Employee">
+    <Key>
+      <PropertyRef Name="HID" />
+    </Key>
+    <Property Name="Position" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CitizenUniversityInfo">
+    <End Role="Citizen" Type="DB.Store.Humans_Citizen" Multiplicity="1" />
+    <End Role="UniversityInfo" Type="DB.Store.UniversityInfos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citizen">
+        <PropertyRef Name="HID" />
+      </Principal>
+      <Dependent Role="UniversityInfo">
+        <PropertyRef Name="Citizen_HID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CitizenDormitoryInfo">
+    <End Role="Citizen" Type="DB.Store.Humans_Citizen" Multiplicity="0..1" />
+    <End Role="DormitoryInfo" Type="DB.Store.DormitoryInfos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citizen">
+        <PropertyRef Name="HID" />
+      </Principal>
+      <Dependent Role="DormitoryInfo">
+        <PropertyRef Name="Citizen_HID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DormitoryInfoDormitory">
+    <End Role="DormitoryInfo" Type="DB.Store.DormitoryInfos" Multiplicity="*" />
+    <End Role="Dormitory" Type="DB.Store.Dormitories" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Dormitory">
+        <PropertyRef Name="DID" />
+      </Principal>
+      <Dependent Role="DormitoryInfo">
+        <PropertyRef Name="DormitoryDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomDormitoryInfo">
+    <End Role="Room" Type="DB.Store.Rooms" Multiplicity="0..1" />
+    <End Role="DormitoryInfo" Type="DB.Store.DormitoryInfos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RID" />
+      </Principal>
+      <Dependent Role="DormitoryInfo">
+        <PropertyRef Name="RoomRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomEmployeeLog">
+    <End Role="Room" Type="DB.Store.Rooms" Multiplicity="0..1" />
+    <End Role="EmployeeLog" Type="DB.Store.EmployeeLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RID" />
+      </Principal>
+      <Dependent Role="EmployeeLog">
+        <PropertyRef Name="RoomRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AccountHuman">
+    <End Role="Account" Type="DB.Store.Accounts" Multiplicity="1" />
+    <End Role="Human" Type="DB.Store.Humans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AID" />
+      </Principal>
+      <Dependent Role="Human">
+        <PropertyRef Name="Account_AID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeDormitoryInfo">
+    <End Role="Employee" Type="DB.Store.Humans_Employee" Multiplicity="0..1" />
+    <End Role="DormitoryInfo" Type="DB.Store.DormitoryInfos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="HID" />
+      </Principal>
+      <Dependent Role="DormitoryInfo">
+        <PropertyRef Name="Employee_HID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeEmployeeLog">
+    <End Role="Employee" Type="DB.Store.Humans_Employee" Multiplicity="1" />
+    <End Role="EmployeeLog" Type="DB.Store.EmployeeLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="HID" />
+      </Principal>
+      <Dependent Role="EmployeeLog">
+        <PropertyRef Name="EmployeeHID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DormitoryRoom">
+    <End Role="Dormitory" Type="DB.Store.Dormitories" Multiplicity="1" />
+    <End Role="Room" Type="DB.Store.Rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dormitory">
+        <PropertyRef Name="DID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="DormitoryDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Citizen_inherits_Human">
+    <End Role="Human" Type="DB.Store.Humans" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Citizen" Type="DB.Store.Humans_Citizen" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Human">
+        <PropertyRef Name="HID" />
+      </Principal>
+      <Dependent Role="Citizen">
+        <PropertyRef Name="HID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_inherits_Human">
+    <End Role="Human" Type="DB.Store.Humans" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Employee" Type="DB.Store.Humans_Employee" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Human">
+        <PropertyRef Name="HID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="HID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DormitoryDatabase" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MenuButtons" EntityType="DB.MenuButtonModel" />
+          <EntitySet Name="Accounts" EntityType="DB.Account" />
+          <EntitySet Name="EmployeeLogs" EntityType="DB.EmployeeLog" />
+          <EntitySet Name="DormitoryInfos" EntityType="DB.DormitoryInfo" />
+          <EntitySet Name="Dormitories" EntityType="DB.Dormitory" />
+          <EntitySet Name="UniversityInfos" EntityType="DB.UniversityInfo" />
+          <EntitySet Name="Rooms" EntityType="DB.Room" />
+          <AssociationSet Name="CitizenUniversityInfo" Association="DB.CitizenUniversityInfo">
+            <End Role="Citizen" EntitySet="Humans" />
+            <End Role="UniversityInfo" EntitySet="UniversityInfos" />
+          </AssociationSet>
+          <AssociationSet Name="CitizenDormitoryInfo" Association="DB.CitizenDormitoryInfo">
+            <End Role="Citizen" EntitySet="Humans" />
+            <End Role="DormitoryInfo" EntitySet="DormitoryInfos" />
+          </AssociationSet>
+          <AssociationSet Name="DormitoryInfoDormitory" Association="DB.DormitoryInfoDormitory">
+            <End Role="DormitoryInfo" EntitySet="DormitoryInfos" />
+            <End Role="Dormitory" EntitySet="Dormitories" />
+          </AssociationSet>
+          <AssociationSet Name="RoomDormitoryInfo" Association="DB.RoomDormitoryInfo">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="DormitoryInfo" EntitySet="DormitoryInfos" />
+          </AssociationSet>
+          <AssociationSet Name="RoomEmployeeLog" Association="DB.RoomEmployeeLog">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="EmployeeLog" EntitySet="EmployeeLogs" />
+          </AssociationSet>
+          <EntitySet Name="Humans" EntityType="DB.Human" />
+          <AssociationSet Name="AccountHuman" Association="DB.AccountHuman">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Human" EntitySet="Humans" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeDormitoryInfo" Association="DB.EmployeeDormitoryInfo">
+            <End Role="Employee" EntitySet="Humans" />
+            <End Role="DormitoryInfo" EntitySet="DormitoryInfos" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeEmployeeLog" Association="DB.EmployeeEmployeeLog">
+            <End Role="Employee" EntitySet="Humans" />
+            <End Role="EmployeeLog" EntitySet="EmployeeLogs" />
+          </AssociationSet>
+          <AssociationSet Name="DormitoryRoom" Association="DB.DormitoryRoom">
+            <End Role="Dormitory" EntitySet="Dormitories" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="MenuButtonModel">
+          <Key>
+            <PropertyRef Name="MBID" />
+          </Key>
+          <Property Name="MBID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Caption" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageSource" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Permission" Type="Int16" Nullable="false" />
+          <Property Name="ViewName" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AID" />
+          </Key>
+          <Property Name="AID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Permission" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Human" Relationship="DB.AccountHuman" FromRole="Account" ToRole="Human" />
+        </EntityType>
+        <EntityType Name="Citizen" BaseType="DB.Human">
+          <NavigationProperty Name="UniversityInfo" Relationship="DB.CitizenUniversityInfo" FromRole="Citizen" ToRole="UniversityInfo" />
+          <NavigationProperty Name="DormitoryInfo" Relationship="DB.CitizenDormitoryInfo" FromRole="Citizen" ToRole="DormitoryInfo" />
+        </EntityType>
+        <EntityType Name="EmployeeLog">
+          <Key>
+            <PropertyRef Name="ELID" />
+          </Key>
+          <Property Name="ELID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Room" Relationship="DB.RoomEmployeeLog" FromRole="EmployeeLog" ToRole="Room" />
+          <Property Name="RoomRID" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Employee" Relationship="DB.EmployeeEmployeeLog" FromRole="EmployeeLog" ToRole="Employee" />
+          <Property Name="EmployeeHID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DormitoryInfo">
+          <Key>
+            <PropertyRef Name="DIID" />
+          </Key>
+          <Property Name="DIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="OrderNumber" Type="Int32" Nullable="true" />
+          <Property Name="CheckInDate" Type="DateTime" Nullable="true" Precision="3" />
+          <Property Name="CheckOutDate" Type="DateTime" Nullable="true" Precision="3" />
+          <NavigationProperty Name="Citizen" Relationship="DB.CitizenDormitoryInfo" FromRole="DormitoryInfo" ToRole="Citizen" />
+          <NavigationProperty Name="Dormitory" Relationship="DB.DormitoryInfoDormitory" FromRole="DormitoryInfo" ToRole="Dormitory" />
+          <Property Name="DormitoryDID" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Room" Relationship="DB.RoomDormitoryInfo" FromRole="DormitoryInfo" ToRole="Room" />
+          <Property Name="RoomRID" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Employee" Relationship="DB.EmployeeDormitoryInfo" FromRole="DormitoryInfo" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Dormitory">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
+          <Property Name="NumberOfFloors" Type="Int32" Nullable="false" />
+          <Property Name="RoomsPerFloor" Type="Int32" Nullable="false" />
+          <Property Name="CitizensPerRoom" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DormitoryInfo" Relationship="DB.DormitoryInfoDormitory" FromRole="Dormitory" ToRole="DormitoryInfo" />
+          <NavigationProperty Name="Room" Relationship="DB.DormitoryRoom" FromRole="Dormitory" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="UniversityInfo">
+          <Key>
+            <PropertyRef Name="UIID" />
+          </Key>
+          <Property Name="UIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="University" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Faculty" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Specialty" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Citizen" Relationship="DB.CitizenUniversityInfo" FromRole="UniversityInfo" ToRole="Citizen" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="Number" Type="Int16" Nullable="false" />
+          <Property Name="Floor" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="DormitoryInfo" Relationship="DB.RoomDormitoryInfo" FromRole="Room" ToRole="DormitoryInfo" />
+          <NavigationProperty Name="EmployeeLog" Relationship="DB.RoomEmployeeLog" FromRole="Room" ToRole="EmployeeLog" />
+          <NavigationProperty Name="Dormitory" Relationship="DB.DormitoryRoom" FromRole="Room" ToRole="Dormitory" />
+          <Property Name="DormitoryDID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="CitizenUniversityInfo">
+          <End Type="DB.Citizen" Role="Citizen" Multiplicity="1" />
+          <End Type="DB.UniversityInfo" Role="UniversityInfo" Multiplicity="0..1" />
+        </Association>
+        <Association Name="CitizenDormitoryInfo">
+          <End Type="DB.Citizen" Role="Citizen" Multiplicity="0..1" />
+          <End Type="DB.DormitoryInfo" Role="DormitoryInfo" Multiplicity="0..1" />
+        </Association>
+        <Association Name="DormitoryInfoDormitory">
+          <End Type="DB.DormitoryInfo" Role="DormitoryInfo" Multiplicity="*" />
+          <End Type="DB.Dormitory" Role="Dormitory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Dormitory">
+              <PropertyRef Name="DID" />
+            </Principal>
+            <Dependent Role="DormitoryInfo">
+              <PropertyRef Name="DormitoryDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomDormitoryInfo">
+          <End Type="DB.Room" Role="Room" Multiplicity="0..1" />
+          <End Type="DB.DormitoryInfo" Role="DormitoryInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="DormitoryInfo">
+              <PropertyRef Name="RoomRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomEmployeeLog">
+          <End Type="DB.Room" Role="Room" Multiplicity="0..1" />
+          <End Type="DB.EmployeeLog" Role="EmployeeLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="EmployeeLog">
+              <PropertyRef Name="RoomRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Employee" BaseType="DB.Human">
+          <NavigationProperty Name="DormitoryInfo" Relationship="DB.EmployeeDormitoryInfo" FromRole="Employee" ToRole="DormitoryInfo" />
+          <NavigationProperty Name="EmployeeLog" Relationship="DB.EmployeeEmployeeLog" FromRole="Employee" ToRole="EmployeeLog" />
+          <Property Name="Position" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Human">
+          <Key>
+            <PropertyRef Name="HID" />
+          </Key>
+          <Property Name="HID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Account" Relationship="DB.AccountHuman" FromRole="Human" ToRole="Account" />
+          <Property Name="Surname" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="AccountHuman">
+          <End Type="DB.Account" Role="Account" Multiplicity="1" />
+          <End Type="DB.Human" Role="Human" Multiplicity="0..1" />
+        </Association>
+        <Association Name="EmployeeDormitoryInfo">
+          <End Type="DB.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="DB.DormitoryInfo" Role="DormitoryInfo" Multiplicity="0..1" />
+        </Association>
+        <Association Name="EmployeeEmployeeLog">
+          <End Type="DB.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="DB.EmployeeLog" Role="EmployeeLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="HID" />
+            </Principal>
+            <Dependent Role="EmployeeLog">
+              <PropertyRef Name="EmployeeHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DormitoryRoom">
+          <End Type="DB.Dormitory" Role="Dormitory" Multiplicity="1" />
+          <End Type="DB.Room" Role="Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dormitory">
+              <PropertyRef Name="DID" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="DormitoryDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBStoreContainer" CdmEntityContainer="DormitoryDatabase">
+    <EntitySetMapping Name="MenuButtons">
+      <EntityTypeMapping TypeName="IsTypeOf(DB.MenuButtonModel)">
+        <MappingFragment StoreEntitySet="MenuButtons">
+          <ScalarProperty Name="MBID" ColumnName="MBID" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="ImageSource" ColumnName="ImageSource" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+          <ScalarProperty Name="ViewName" ColumnName="ViewName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="IsTypeOf(DB.Account)">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="AID" ColumnName="AID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(DB.EmployeeLog)">
+        <MappingFragment StoreEntitySet="EmployeeLogs">
+          <ScalarProperty Name="ELID" ColumnName="ELID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+          <ScalarProperty Name="RoomRID" ColumnName="RoomRID" />
+          <ScalarProperty Name="EmployeeHID" ColumnName="EmployeeHID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DormitoryInfos">
+      <EntityTypeMapping TypeName="IsTypeOf(DB.DormitoryInfo)">
+        <MappingFragment StoreEntitySet="DormitoryInfos">
+          <ScalarProperty Name="DIID" ColumnName="DIID" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+          <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+          <ScalarProperty Name="DormitoryDID" ColumnName="DormitoryDID" />
+          <ScalarProperty Name="RoomRID" ColumnName="RoomRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dormitories">
+      <EntityTypeMapping TypeName="IsTypeOf(DB.Dormitory)">
+        <MappingFragment StoreEntitySet="Dormitories">
+          <ScalarProperty Name="DID" ColumnName="DID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NumberOfFloors" ColumnName="NumberOfFloors" />
+          <ScalarProperty Name="RoomsPerFloor" ColumnName="RoomsPerFloor" />
+          <ScalarProperty Name="CitizensPerRoom" ColumnName="CitizensPerRoom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UniversityInfos">
+      <EntityTypeMapping TypeName="IsTypeOf(DB.UniversityInfo)">
+        <MappingFragment StoreEntitySet="UniversityInfos">
+          <ScalarProperty Name="UIID" ColumnName="UIID" />
+          <ScalarProperty Name="University" ColumnName="University" />
+          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+          <ScalarProperty Name="Specialty" ColumnName="Specialty" />
+          <ScalarProperty Name="GroupNumber" ColumnName="GroupNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="IsTypeOf(DB.Room)">
+        <MappingFragment StoreEntitySet="Rooms">
+          <ScalarProperty Name="RID" ColumnName="RID" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Floor" ColumnName="Floor" />
+          <ScalarProperty Name="DormitoryDID" ColumnName="DormitoryDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Humans">
+      <EntityTypeMapping TypeName="IsTypeOf(DB.Human)">
+        <MappingFragment StoreEntitySet="Humans">
+          <ScalarProperty Name="HID" ColumnName="HID" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DB.Citizen)">
+        <MappingFragment StoreEntitySet="Humans_Citizen">
+          <ScalarProperty Name="HID" ColumnName="HID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DB.Employee)">
+        <MappingFragment StoreEntitySet="Humans_Employee">
+          <ScalarProperty Name="HID" ColumnName="HID" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CitizenUniversityInfo" TypeName="DB.CitizenUniversityInfo" StoreEntitySet="UniversityInfos">
+      <EndProperty Name="Citizen">
+        <ScalarProperty Name="HID" ColumnName="Citizen_HID" />
+      </EndProperty>
+      <EndProperty Name="UniversityInfo">
+        <ScalarProperty Name="UIID" ColumnName="UIID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CitizenDormitoryInfo" TypeName="DB.CitizenDormitoryInfo" StoreEntitySet="DormitoryInfos">
+      <EndProperty Name="Citizen">
+        <ScalarProperty Name="HID" ColumnName="Citizen_HID" />
+      </EndProperty>
+      <EndProperty Name="DormitoryInfo">
+        <ScalarProperty Name="DIID" ColumnName="DIID" />
+      </EndProperty>
+      <Condition ColumnName="Citizen_HID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AccountHuman" TypeName="DB.AccountHuman" StoreEntitySet="Humans">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="AID" ColumnName="Account_AID" />
+      </EndProperty>
+      <EndProperty Name="Human">
+        <ScalarProperty Name="HID" ColumnName="HID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmployeeDormitoryInfo" TypeName="DB.EmployeeDormitoryInfo" StoreEntitySet="DormitoryInfos">
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="HID" ColumnName="Employee_HID" />
+      </EndProperty>
+      <EndProperty Name="DormitoryInfo">
+        <ScalarProperty Name="DIID" ColumnName="DIID" />
+      </EndProperty>
+      <Condition ColumnName="Employee_HID" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

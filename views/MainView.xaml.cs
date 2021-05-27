@@ -13,10 +13,15 @@ namespace DormitoryApp.Views
         {
             InitializeComponent();
             this.MouseLeftButtonDown += App.Window_DragMove;
-            this.DataContext = new MainViewModel();
         }
 
-        //private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        //    => this.BarPanel.Width = e.NewSize.Width - e.NewSize.Width / App.GoldenRatio;
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+            => this.BarPanel.Width = e.NewSize.Width - e.NewSize.Width / App.GoldenRatio;
+
+        //private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    var dc = this.DataContext as MainViewModel;
+        //    dc.ChangeFrame.Execute(dc.SelectedButton);
+        //}
     }
 }

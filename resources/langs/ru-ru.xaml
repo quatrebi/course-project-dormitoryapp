@@ -4,13 +4,53 @@
     <sys:String x:Key="i18n-Title">Общежитие</sys:String>
 
     <sys:String x:Key="i18n-Home">Домашняя страница</sys:String>
+    <sys:String x:Key="i18n-Dormitories">Общежития</sys:String>
     <sys:String x:Key="i18n-Settings">Настройки</sys:String>
     <sys:String x:Key="i18n-Schedule">Календарь</sys:String>
+    <sys:String x:Key="i18n-Profile">Профиль</sys:String>
+    <sys:String x:Key="i18n-Rooms">Комнаты</sys:String>
+    <sys:String x:Key="i18n-Citizens">Жильцы</sys:String>
+    <sys:String x:Key="i18n-Employees">Сотрудники</sys:String>
+    <sys:String x:Key="i18n-Humans">Люди</sys:String>
 
+    <sys:String x:Key="i18n-Welcome">Добро пожаловать, {0}!</sys:String>
 
-    <sys:String x:Key="i18n-EnterData">Введите данные</sys:String>
+    <sys:String x:Key="i18n-University">Университет</sys:String>
+    <sys:String x:Key="i18n-UniversityInfo">Информацию об университете</sys:String>
+    <sys:String x:Key="i18n-Faculty">Факультет</sys:String>
+    <sys:String x:Key="i18n-Specialty">Специальность</sys:String>
+    <sys:String x:Key="i18n-GroupNumber">Номер группы</sys:String>
+    
+    <sys:String x:Key="i18n-Room">Комната</sys:String>
+    <sys:String x:Key="i18n-RoomNumber">Номер комнаты</sys:String>
+    <sys:String x:Key="i18n-RoomFloor">Этаж комнаты</sys:String>
+    
+    <sys:String x:Key="i18n-Dormitory">Общежитие</sys:String>
+    <sys:String x:Key="i18n-DormitoryName">Название общежития</sys:String>
+    <sys:String x:Key="i18n-NumberOfFloors">Количество этажей</sys:String>
+    <sys:String x:Key="i18n-RoomsPerFloor">Количество комнат на этаже</sys:String>
+    <sys:String x:Key="i18n-CitizensPerRoom">Количество жильцов в комнате</sys:String>
+    
+    <sys:String x:Key="i18n-DormitoryInfo">Информация об общежитии</sys:String>
+    <sys:String x:Key="i18n-OrderNumber">Ордер №</sys:String>
+    <sys:String x:Key="i18n-CheckInDate">Дата заселения</sys:String>
+    <sys:String x:Key="i18n-CheckOutDate">Дата выселения</sys:String>
+    
+    <sys:String x:Key="i18n-Citizen">Жилец</sys:String>
+    <sys:String x:Key="i18n-Surname">Фамилия</sys:String>
+    <sys:String x:Key="i18n-Name">Имя</sys:String>
+    <sys:String x:Key="i18n-Patronymic">Отчество</sys:String>
+    
+    <sys:String x:Key="i18n-Account">Аккаунт</sys:String>
     <sys:String x:Key="i18n-Login">Логин</sys:String>
     <sys:String x:Key="i18n-Password">Пароль</sys:String>
+
+    <sys:String x:Key="i18n-Employee">Сотрудник</sys:String>
+    <sys:String x:Key="i18n-Description">Описание</sys:String>
+    <sys:String x:Key="i18n-EmployeeDateTimeLog">Дата выполнения работы</sys:String>
+    
+    <sys:String x:Key="i18n-Registration">Регистрация</sys:String>
+    <sys:String x:Key="i18n-EnterData">Введите данные</sys:String>
     <sys:String x:Key="i18n-Auth">Авторизация</sys:String>
     <sys:String x:Key="i18n-Success">Успешно</sys:String>
     <sys:String x:Key="i18n-Failure">Безуспешно</sys:String>
@@ -19,4 +59,6 @@
     <sys:String x:Key="i18n-Enter">Войти</sys:String>
 
     <sys:String x:Key="i18n-Unknown">Неизвестно</sys:String>
+    <sys:String x:Key="i18n-UnknownError">Неизвестная ошибка</sys:String>
+    <sys:String x:Key="i18n-NullReferenceError">Информация недоступна! Обратитесь к администраторам.</sys:String>
 </ResourceDictionary>

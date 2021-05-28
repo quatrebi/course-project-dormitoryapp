@@ -5,6 +5,9 @@ using System.Windows;
 
 namespace DormitoryApp.Models
 {
+    /// <summary>
+    ///  MAYBE TO DELETE?
+    /// </summary>
     public class StatusHandler : INotifyPropertyChanged
     {
         private int m_id = 0;

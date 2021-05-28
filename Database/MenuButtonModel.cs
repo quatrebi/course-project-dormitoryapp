@@ -7,15 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DormitoryApp
+namespace DormitoryApp.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Citizen : Human
+    public partial class MenuButtonModel
     {
-    
-        public virtual UniversityInfo UniversityInfo { get; set; }
-        public virtual DormitoryInfo DormitoryInfo { get; set; }
+        public int MBID { get; set; }
+        public string Caption { get; set; }
+        public string ImageSource { get; set; }
+        public short Permission { get; set; }
+        public string ViewName { get; set; }
+        public string ModelName { get; set; }
     }
 }

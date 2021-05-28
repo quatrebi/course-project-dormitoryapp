@@ -7,29 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DormitoryApp
+namespace DormitoryApp.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Dormitory
+    public partial class EmployeeModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Dormitory()
+        public EmployeeModel()
         {
-            this.DormitoryInfo = new HashSet<DormitoryInfo>();
-            this.Room = new HashSet<Room>();
+            this.EmployeeLogModel = new HashSet<EmployeeLogModel>();
         }
     
-        public int DID { get; set; }
-        public string Name { get; set; }
-        public int NumberOfFloors { get; set; }
-        public int RoomsPerFloor { get; set; }
-        public int CitizensPerRoom { get; set; }
+        public int UID { get; set; }
+        public string Position { get; set; }
+        public int DormitoryModelDID { get; set; }
     
+        public virtual UserModel UserModel { get; set; }
+        public virtual DormitoryModel DormitoryModel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DormitoryInfo> DormitoryInfo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room> Room { get; set; }
+        public virtual ICollection<EmployeeLogModel> EmployeeLogModel { get; set; }
     }
 }

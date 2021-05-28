@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DormitoryApp.Database;
 
 namespace DormitoryApp.Models
 {
@@ -10,11 +11,12 @@ namespace DormitoryApp.Models
     {
         public MenuButton(MenuButtonModel model)
         {
-            this.MBID = model.MBID;
-            this.ImageSource = model.ImageSource;
-            this.Caption = model.Caption;
-            this.Permission = model.Permission;
-            this.ViewName = model.ViewName;
+            MBID = model.MBID;
+            ImageSource = model.ImageSource;
+            Caption = model.Caption;
+            Permission = model.Permission;
+            ViewName = model.ViewName;
+            ModelName = model.ModelName;
         }
 
         public string PageName => App.Current.TryFindResource($"i18n-{Caption}") as string;

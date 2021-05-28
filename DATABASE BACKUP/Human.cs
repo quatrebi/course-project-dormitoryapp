@@ -7,19 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DormitoryApp
+namespace DormitoryApp.DATABASE_BACKUP
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class UniversityInfo
+    public partial class Human
     {
-        public int UIID { get; set; }
-        public string University { get; set; }
-        public string Faculty { get; set; }
-        public string Specialty { get; set; }
-        public int GroupNumber { get; set; }
+        public int HID { get; set; }
+        public string Surname { get; set; }
+        public string Name { get; set; }
+        public string Patronymic { get; set; }
     
-        public virtual Citizen Citizen { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

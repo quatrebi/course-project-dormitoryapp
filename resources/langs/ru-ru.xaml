@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="i18n-Title">Общежитие</sys:String>
+    <sys:String x:Key="i18n-ResidentProfile">Профиль жильца</sys:String>
+    <sys:String x:Key="i18n-EmployeeProfile">Профиль сотрудника</sys:String>
 
     <sys:String x:Key="i18n-Home">Домашняя страница</sys:String>
     <sys:String x:Key="i18n-Dormitories">Общежития</sys:String>
@@ -36,7 +38,7 @@
     <sys:String x:Key="i18n-CheckInDate">Дата заселения</sys:String>
     <sys:String x:Key="i18n-CheckOutDate">Дата выселения</sys:String>
     
-    <sys:String x:Key="i18n-Citizen">Жилец</sys:String>
+    <sys:String x:Key="i18n-Resident">Жилец</sys:String>
     <sys:String x:Key="i18n-Surname">Фамилия</sys:String>
     <sys:String x:Key="i18n-Name">Имя</sys:String>
     <sys:String x:Key="i18n-Patronymic">Отчество</sys:String>
@@ -46,6 +48,10 @@
     <sys:String x:Key="i18n-Password">Пароль</sys:String>
 
     <sys:String x:Key="i18n-Employee">Сотрудник</sys:String>
+    <sys:String x:Key="i18n-EmployeePosition">Должность</sys:String>
+    <sys:String x:Key="i18n-EmployeeInfo">Информация о сотруднике</sys:String>
+    <sys:String x:Key="i18n-EmployeeLogInfo">Записи сотрудников</sys:String>
+    <sys:String x:Key="i18n-AddEmployeeLog">Добавление записи сотрудника</sys:String>
     <sys:String x:Key="i18n-Description">Описание</sys:String>
     <sys:String x:Key="i18n-EmployeeDateTimeLog">Дата выполнения работы</sys:String>
     
@@ -56,6 +62,8 @@
     <sys:String x:Key="i18n-Failure">Безуспешно</sys:String>
 
     <sys:String x:Key="i18n-Next">Далее</sys:String>
+    <sys:String x:Key="i18n-Accept">Принять</sys:String>
+    <sys:String x:Key="i18n-Cancel">Отменить</sys:String>
     <sys:String x:Key="i18n-Enter">Войти</sys:String>
 
     <sys:String x:Key="i18n-Unknown">Неизвестно</sys:String>

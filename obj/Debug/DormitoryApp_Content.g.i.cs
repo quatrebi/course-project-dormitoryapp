@@ -8,9 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dormitorydb.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dormitorydb.edmx.sql")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dormitorydb.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dormitorymodel.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database/databasemodel.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database/databasemodel.edmx.sql")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database/databasemodel.tt")]
 
 

@@ -1,4 +1,5 @@
 ﻿using DormitoryApp.Models;
+using DormitoryApp.Database;
 using DormitoryApp.Views;
 using System;
 using System.Collections.Generic;
@@ -27,56 +28,63 @@ namespace DormitoryApp.ViewModels
             }
         }
 
-        private Account m_currentAccount;
-        public Account CurrentAccount
+        private UserModel m_localUser;
+        public UserModel LocalUser
         {
-            get { return m_currentAccount; }
+            get { return m_localUser; }
             set
             {
-                m_currentAccount = value;
-                OnPropertyChanged("CurrentAccount");
+                m_localUser = value;
+                OnPropertyChanged("LocalUser");
             }
         }
 
-        private readonly Task taskDB;
+
+
+        private Task taskDB;
+        private readonly DatabaseModelContext localdb;
         public LoginViewModel()
         {
-            CurrentAccount = new Account();
+            LocalUser = new UserModel();
+            localdb = new DatabaseModelContext();
             Status = new StatusHandler(typeof(LoginStatusID));
-            taskDB = new DormitoryDatabase().Accounts.LoadAsync();
+            taskDB = localdb.UserModels.LoadAsync();
         }
 
         private RelayCommand m_authCommand;
         public RelayCommand AuthCommand => m_authCommand ??
-            (m_authCommand = new RelayCommand(obj =>
+            (m_authCommand = new RelayCommand(_ =>
             {
+                Console.WriteLine("AuthCommand EXECUTED");
                 DispatcherTimer timer = new DispatcherTimer();
                 Status.ID = (int)LoginStatusID.Auth;
-                var acc = obj as Account;
 
                 timer.Tick += (s, a) =>
                 {
                     timer.Stop();
                     if (taskDB.Status == TaskStatus.Running) taskDB.Wait();
-                    var founded = (from u in new DormitoryDatabase().Accounts
-                                   where u.Username == acc.Username &&
-                                   u.Password == acc.Password
+                    var founded = (from u in localdb.UserModels.Local
+                                   where u.Username == LocalUser.Username &&
+                                   u.Password == App.GetHash(LocalUser.Password)
                                    select u).ToArray();
+
                     if (founded.Length == 0 || founded?[0].Permission == 0) { Status.ID = (int)LoginStatusID.Failure; return; }
                     else Status.ID = (int)LoginStatusID.Success;
-                    acc = founded[0];
+                    LocalUser = founded[0];
+                    taskDB = localdb.MenuButtonModels.LoadAsync();
 
                     timer = new DispatcherTimer();
                     timer.Tick += (_s, _a) =>
                     {
                         timer.Stop();
+                        taskDB.Wait();
                         MainView main = new MainView()
                         {
                             DataContext = new MainViewModel()
                             {
-                                CurrentHuman = acc.Human,
-                                Buttons = new ObservableCollection<MenuButton>((from btn in new DormitoryDatabase().MenuButtons
-                                                                               where (btn.Permission & acc.Permission) != 0
+                                LocalUser = this.LocalUser,
+                                Buttons = new ObservableCollection<MenuButton>((from btn in localdb.MenuButtonModels
+                                                                               where (btn.Permission & LocalUser.Permission) != 0
                                                                                select btn).ToArray().Select(x => new MenuButton(x)))
                             }
                         };

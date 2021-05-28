@@ -2,9 +2,11 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using DormitoryApp.Database;
 
 namespace DormitoryApp
 {
@@ -21,21 +23,30 @@ namespace DormitoryApp
 
         public static string GetHash(string input)
             => Convert.ToBase64String(MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input)));
-
-        //public static async Task<Account[]> GetAccountsAsync()
-        //{
-        //    Account[] tmp = new Account[] { };
-        //    await db.Accounts.ForEachAsync(p => tmp.Append(p));
-        //    return tmp;
-        //}
     }
 
-    //public static class UiRefresh
-    //{
-    //    private static Action EmptyDelegate = delegate () { };
-    //    public static void Refresh(this UIElement uiElement)
-    //    {
-    //        uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
-    //    }
-    //}
+    public class ModelTemplateSelector : DataTemplateSelector
+    {
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            if (container is FrameworkElement element && item != null)
+            {
+                if (item is ResidentModel)
+                    return element.FindResource("ResidentModelTemplate") as DataTemplate;
+                if (item is UserModel)
+                    return element.FindResource("UserModelTemplate") as DataTemplate;
+                if (item is EmployeeModel)
+                    return element.FindResource("EmployeeModelTemplate") as DataTemplate;
+                if (item is EmployeeLogModel)
+                    return element.FindResource("EmployeeLogModelTemplate") as DataTemplate;
+                if (item is RoomModel)
+                    return element.FindResource("RoomModelTemplate") as DataTemplate;
+                if (item is DormitoryModel)
+                    return element.FindResource("DormitoryModelTemplate") as DataTemplate;
+                else
+                    return element.FindResource("DefaultModelTemplate") as DataTemplate;
+            }
+            else return null;
+        }
+    }
 }

@@ -7,18 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DormitoryApp
+namespace DormitoryApp.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class ResidentModel
     {
-        public int AID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public short Permission { get; set; }
+        public int UID { get; set; }
+        public int OrderNumber { get; set; }
+        public System.DateTime CheckInDate { get; set; }
+        public System.DateTime CheckOutDate { get; set; }
+        public string University { get; set; }
+        public string Faculty { get; set; }
+        public string Specialty { get; set; }
+        public Nullable<int> GroupNumber { get; set; }
+        public int RoomModelRID { get; set; }
     
-        public virtual Human Human { get; set; }
+        public virtual UserModel UserModel { get; set; }
+        public virtual RoomModel RoomModel { get; set; }
     }
 }

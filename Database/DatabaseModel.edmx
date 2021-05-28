@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="UserModels" EntityType="DatabaseModel.Store.UserModels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DormitoryModels" EntityType="DatabaseModel.Store.DormitoryModels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmployeeModels" EntityType="DatabaseModel.Store.EmployeeModels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmployeeLogModels" EntityType="DatabaseModel.Store.EmployeeLogModels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ResidentModels" EntityType="DatabaseModel.Store.ResidentModels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoomModels" EntityType="DatabaseModel.Store.RoomModels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MenuButtonModels" EntityType="DatabaseModel.Store.MenuButtonModels" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserModelEmployeeModel" Association="DatabaseModel.Store.UserModelEmployeeModel">
+      <End Role="UserModel" EntitySet="UserModels" />
+      <End Role="EmployeeModel" EntitySet="EmployeeModels" />
+    </AssociationSet>
+    <AssociationSet Name="UserModelResidentModel" Association="DatabaseModel.Store.UserModelResidentModel">
+      <End Role="UserModel" EntitySet="UserModels" />
+      <End Role="ResidentModel" EntitySet="ResidentModels" />
+    </AssociationSet>
+    <AssociationSet Name="DormitoryModelRoomModel" Association="DatabaseModel.Store.DormitoryModelRoomModel">
+      <End Role="DormitoryModel" EntitySet="DormitoryModels" />
+      <End Role="RoomModel" EntitySet="RoomModels" />
+    </AssociationSet>
+    <AssociationSet Name="DormitoryModelEmployeeModel" Association="DatabaseModel.Store.DormitoryModelEmployeeModel">
+      <End Role="DormitoryModel" EntitySet="DormitoryModels" />
+      <End Role="EmployeeModel" EntitySet="EmployeeModels" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeModelEmployeeLogModel" Association="DatabaseModel.Store.EmployeeModelEmployeeLogModel">
+      <End Role="EmployeeModel" EntitySet="EmployeeModels" />
+      <End Role="EmployeeLogModel" EntitySet="EmployeeLogModels" />
+    </AssociationSet>
+    <AssociationSet Name="RoomModelResidentModel" Association="DatabaseModel.Store.RoomModelResidentModel">
+      <End Role="RoomModel" EntitySet="RoomModels" />
+      <End Role="ResidentModel" EntitySet="ResidentModels" />
+    </AssociationSet>
+    <AssociationSet Name="RoomModelEmployeeLogModel" Association="DatabaseModel.Store.RoomModelEmployeeLogModel">
+      <End Role="RoomModel" EntitySet="RoomModels" />
+      <End Role="EmployeeLogModel" EntitySet="EmployeeLogModels" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserModels">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Permission" Type="smallint" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Patronymic" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DormitoryModels">
+    <Key>
+      <PropertyRef Name="DID" />
+    </Key>
+    <Property Name="DID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumberOfFloors" Type="int" Nullable="false" />
+    <Property Name="RoomsPerFloor" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeModels">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" Nullable="false" />
+    <Property Name="Position" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DormitoryModelDID" Type="int" Nullable="false" />
+    <Property Name="UserModel_UID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeLogModels">
+    <Key>
+      <PropertyRef Name="ELID" />
+    </Key>
+    <Property Name="ELID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Datetime" Type="datetime" Nullable="false" />
+    <Property Name="EmployeeModelUID" Type="int" Nullable="false" />
+    <Property Name="RoomModelRID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ResidentModels">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" Nullable="false" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="CheckInDate" Type="datetime" Nullable="false" />
+    <Property Name="CheckOutDate" Type="datetime" Nullable="false" />
+    <Property Name="University" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Faculty" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Specialty" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GroupNumber" Type="int" Nullable="true" />
+    <Property Name="RoomModelRID" Type="int" Nullable="false" />
+    <Property Name="UserModel_UID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomModels">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Floor" Type="int" Nullable="false" />
+    <Property Name="DormitoryModelDID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MenuButtonModels">
+    <Key>
+      <PropertyRef Name="MBID" />
+    </Key>
+    <Property Name="MBID" Type="int" Nullable="false" />
+    <Property Name="Caption" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ImageSource" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Permission" Type="smallint" Nullable="false" />
+    <Property Name="ViewName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ModelName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UserModelEmployeeModel">
+    <End Role="UserModel" Type="DatabaseModel.Store.UserModels" Multiplicity="1" />
+    <End Role="EmployeeModel" Type="DatabaseModel.Store.EmployeeModels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserModel">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="EmployeeModel">
+        <PropertyRef Name="UserModel_UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserModelResidentModel">
+    <End Role="UserModel" Type="DatabaseModel.Store.UserModels" Multiplicity="1" />
+    <End Role="ResidentModel" Type="DatabaseModel.Store.ResidentModels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserModel">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="ResidentModel">
+        <PropertyRef Name="UserModel_UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DormitoryModelRoomModel">
+    <End Role="DormitoryModel" Type="DatabaseModel.Store.DormitoryModels" Multiplicity="1" />
+    <End Role="RoomModel" Type="DatabaseModel.Store.RoomModels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DormitoryModel">
+        <PropertyRef Name="DID" />
+      </Principal>
+      <Dependent Role="RoomModel">
+        <PropertyRef Name="DormitoryModelDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DormitoryModelEmployeeModel">
+    <End Role="DormitoryModel" Type="DatabaseModel.Store.DormitoryModels" Multiplicity="1" />
+    <End Role="EmployeeModel" Type="DatabaseModel.Store.EmployeeModels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DormitoryModel">
+        <PropertyRef Name="DID" />
+      </Principal>
+      <Dependent Role="EmployeeModel">
+        <PropertyRef Name="DormitoryModelDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeModelEmployeeLogModel">
+    <End Role="EmployeeModel" Type="DatabaseModel.Store.EmployeeModels" Multiplicity="1" />
+    <End Role="EmployeeLogModel" Type="DatabaseModel.Store.EmployeeLogModels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeModel">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="EmployeeLogModel">
+        <PropertyRef Name="EmployeeModelUID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomModelResidentModel">
+    <End Role="RoomModel" Type="DatabaseModel.Store.RoomModels" Multiplicity="1" />
+    <End Role="ResidentModel" Type="DatabaseModel.Store.ResidentModels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomModel">
+        <PropertyRef Name="RID" />
+      </Principal>
+      <Dependent Role="ResidentModel">
+        <PropertyRef Name="RoomModelRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomModelEmployeeLogModel">
+    <End Role="RoomModel" Type="DatabaseModel.Store.RoomModels" Multiplicity="1" />
+    <End Role="EmployeeLogModel" Type="DatabaseModel.Store.EmployeeLogModels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomModel">
+        <PropertyRef Name="RID" />
+      </Principal>
+      <Dependent Role="EmployeeLogModel">
+        <PropertyRef Name="RoomModelRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DatabaseModelContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserModels" EntityType="DatabaseModel.UserModel" />
+          <EntitySet Name="DormitoryModels" EntityType="DatabaseModel.DormitoryModel" />
+          <EntitySet Name="EmployeeModels" EntityType="DatabaseModel.EmployeeModel" />
+          <EntitySet Name="EmployeeLogModels" EntityType="DatabaseModel.EmployeeLogModel" />
+          <EntitySet Name="ResidentModels" EntityType="DatabaseModel.ResidentModel" />
+          <EntitySet Name="RoomModels" EntityType="DatabaseModel.RoomModel" />
+          <EntitySet Name="MenuButtonModels" EntityType="DatabaseModel.MenuButtonModel" />
+          <AssociationSet Name="UserModelEmployeeModel" Association="DatabaseModel.UserModelEmployeeModel">
+            <End Role="UserModel" EntitySet="UserModels" />
+            <End Role="EmployeeModel" EntitySet="EmployeeModels" />
+          </AssociationSet>
+          <AssociationSet Name="UserModelResidentModel" Association="DatabaseModel.UserModelResidentModel">
+            <End Role="UserModel" EntitySet="UserModels" />
+            <End Role="ResidentModel" EntitySet="ResidentModels" />
+          </AssociationSet>
+          <AssociationSet Name="DormitoryModelRoomModel" Association="DatabaseModel.DormitoryModelRoomModel">
+            <End Role="DormitoryModel" EntitySet="DormitoryModels" />
+            <End Role="RoomModel" EntitySet="RoomModels" />
+          </AssociationSet>
+          <AssociationSet Name="DormitoryModelEmployeeModel" Association="DatabaseModel.DormitoryModelEmployeeModel">
+            <End Role="DormitoryModel" EntitySet="DormitoryModels" />
+            <End Role="EmployeeModel" EntitySet="EmployeeModels" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeModelEmployeeLogModel" Association="DatabaseModel.EmployeeModelEmployeeLogModel">
+            <End Role="EmployeeModel" EntitySet="EmployeeModels" />
+            <End Role="EmployeeLogModel" EntitySet="EmployeeLogModels" />
+          </AssociationSet>
+          <AssociationSet Name="RoomModelResidentModel" Association="DatabaseModel.RoomModelResidentModel">
+            <End Role="RoomModel" EntitySet="RoomModels" />
+            <End Role="ResidentModel" EntitySet="ResidentModels" />
+          </AssociationSet>
+          <AssociationSet Name="RoomModelEmployeeLogModel" Association="DatabaseModel.RoomModelEmployeeLogModel">
+            <End Role="RoomModel" EntitySet="RoomModels" />
+            <End Role="EmployeeLogModel" EntitySet="EmployeeLogModels" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="UserModel">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Permission" Type="Int16" Nullable="false" />
+          <Property Name="Surname" Type="String" Nullable="true" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="Patronymic" Type="String" Nullable="true" />
+          <NavigationProperty Name="EmployeeModel" Relationship="DatabaseModel.UserModelEmployeeModel" FromRole="UserModel" ToRole="EmployeeModel" />
+          <NavigationProperty Name="ResidentModel" Relationship="DatabaseModel.UserModelResidentModel" FromRole="UserModel" ToRole="ResidentModel" />
+        </EntityType>
+        <EntityType Name="DormitoryModel">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="NumberOfFloors" Type="Int32" Nullable="false" />
+          <Property Name="RoomsPerFloor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoomModel" Relationship="DatabaseModel.DormitoryModelRoomModel" FromRole="DormitoryModel" ToRole="RoomModel" />
+          <NavigationProperty Name="EmployeeModel" Relationship="DatabaseModel.DormitoryModelEmployeeModel" FromRole="DormitoryModel" ToRole="EmployeeModel" />
+        </EntityType>
+        <EntityType Name="EmployeeModel">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="Position" Type="String" Nullable="true" />
+          <NavigationProperty Name="UserModel" Relationship="DatabaseModel.UserModelEmployeeModel" FromRole="EmployeeModel" ToRole="UserModel" />
+          <NavigationProperty Name="DormitoryModel" Relationship="DatabaseModel.DormitoryModelEmployeeModel" FromRole="EmployeeModel" ToRole="DormitoryModel" />
+          <Property Name="DormitoryModelDID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EmployeeLogModel" Relationship="DatabaseModel.EmployeeModelEmployeeLogModel" FromRole="EmployeeModel" ToRole="EmployeeLogModel" />
+        </EntityType>
+        <EntityType Name="EmployeeLogModel">
+          <Key>
+            <PropertyRef Name="ELID" />
+          </Key>
+          <Property Name="ELID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="true" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="EmployeeModel" Relationship="DatabaseModel.EmployeeModelEmployeeLogModel" FromRole="EmployeeLogModel" ToRole="EmployeeModel" />
+          <Property Name="EmployeeModelUID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoomModel" Relationship="DatabaseModel.RoomModelEmployeeLogModel" FromRole="EmployeeLogModel" ToRole="RoomModel" />
+          <Property Name="RoomModelRID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResidentModel">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="OrderNumber" Type="Int32" Nullable="false" />
+          <Property Name="CheckInDate" Type="DateTime" Nullable="false" />
+          <Property Name="CheckOutDate" Type="DateTime" Nullable="false" />
+          <Property Name="University" Type="String" Nullable="true" />
+          <Property Name="Faculty" Type="String" Nullable="true" />
+          <Property Name="Specialty" Type="String" Nullable="true" />
+          <Property Name="GroupNumber" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="UserModel" Relationship="DatabaseModel.UserModelResidentModel" FromRole="ResidentModel" ToRole="UserModel" />
+          <NavigationProperty Name="RoomModel" Relationship="DatabaseModel.RoomModelResidentModel" FromRole="ResidentModel" ToRole="RoomModel" />
+          <Property Name="RoomModelRID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoomModel">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DormitoryModel" Relationship="DatabaseModel.DormitoryModelRoomModel" FromRole="RoomModel" ToRole="DormitoryModel" />
+          <Property Name="DormitoryModelDID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ResidentModel" Relationship="DatabaseModel.RoomModelResidentModel" FromRole="RoomModel" ToRole="ResidentModel" />
+          <NavigationProperty Name="EmployeeLogModel" Relationship="DatabaseModel.RoomModelEmployeeLogModel" FromRole="RoomModel" ToRole="EmployeeLogModel" />
+        </EntityType>
+        <EntityType Name="MenuButtonModel">
+          <Key>
+            <PropertyRef Name="MBID" />
+          </Key>
+          <Property Name="MBID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Caption" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageSource" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Permission" Type="Int16" Nullable="false" />
+          <Property Name="ViewName" Type="String" Nullable="false" />
+          <Property Name="ModelName" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="UserModelEmployeeModel">
+          <End Type="DatabaseModel.UserModel" Role="UserModel" Multiplicity="1" />
+          <End Type="DatabaseModel.EmployeeModel" Role="EmployeeModel" Multiplicity="0..1" />
+        </Association>
+        <Association Name="UserModelResidentModel">
+          <End Type="DatabaseModel.UserModel" Role="UserModel" Multiplicity="1" />
+          <End Type="DatabaseModel.ResidentModel" Role="ResidentModel" Multiplicity="0..1" />
+        </Association>
+        <Association Name="DormitoryModelRoomModel">
+          <End Type="DatabaseModel.DormitoryModel" Role="DormitoryModel" Multiplicity="1" />
+          <End Type="DatabaseModel.RoomModel" Role="RoomModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DormitoryModel">
+              <PropertyRef Name="DID" />
+            </Principal>
+            <Dependent Role="RoomModel">
+              <PropertyRef Name="DormitoryModelDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DormitoryModelEmployeeModel">
+          <End Type="DatabaseModel.DormitoryModel" Role="DormitoryModel" Multiplicity="1" />
+          <End Type="DatabaseModel.EmployeeModel" Role="EmployeeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DormitoryModel">
+              <PropertyRef Name="DID" />
+            </Principal>
+            <Dependent Role="EmployeeModel">
+              <PropertyRef Name="DormitoryModelDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmployeeModelEmployeeLogModel">
+          <End Type="DatabaseModel.EmployeeModel" Role="EmployeeModel" Multiplicity="1" />
+          <End Type="DatabaseModel.EmployeeLogModel" Role="EmployeeLogModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeModel">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="EmployeeLogModel">
+              <PropertyRef Name="EmployeeModelUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomModelResidentModel">
+          <End Type="DatabaseModel.RoomModel" Role="RoomModel" Multiplicity="1" />
+          <End Type="DatabaseModel.ResidentModel" Role="ResidentModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomModel">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="ResidentModel">
+              <PropertyRef Name="RoomModelRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomModelEmployeeLogModel">
+          <End Type="DatabaseModel.RoomModel" Role="RoomModel" Multiplicity="1" />
+          <End Type="DatabaseModel.EmployeeLogModel" Role="EmployeeLogModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomModel">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="EmployeeLogModel">
+              <PropertyRef Name="RoomModelRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseModelContext">
+    <EntitySetMapping Name="UserModels">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.UserModel)">
+        <MappingFragment StoreEntitySet="UserModels">
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DormitoryModels">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.DormitoryModel)">
+        <MappingFragment StoreEntitySet="DormitoryModels">
+          <ScalarProperty Name="DID" ColumnName="DID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NumberOfFloors" ColumnName="NumberOfFloors" />
+          <ScalarProperty Name="RoomsPerFloor" ColumnName="RoomsPerFloor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeModels">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.EmployeeModel)">
+        <MappingFragment StoreEntitySet="EmployeeModels">
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="DormitoryModelDID" ColumnName="DormitoryModelDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeLogModels">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.EmployeeLogModel)">
+        <MappingFragment StoreEntitySet="EmployeeLogModels">
+          <ScalarProperty Name="ELID" ColumnName="ELID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+          <ScalarProperty Name="EmployeeModelUID" ColumnName="EmployeeModelUID" />
+          <ScalarProperty Name="RoomModelRID" ColumnName="RoomModelRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResidentModels">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.ResidentModel)">
+        <MappingFragment StoreEntitySet="ResidentModels">
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+          <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+          <ScalarProperty Name="University" ColumnName="University" />
+          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+          <ScalarProperty Name="Specialty" ColumnName="Specialty" />
+          <ScalarProperty Name="GroupNumber" ColumnName="GroupNumber" />
+          <ScalarProperty Name="RoomModelRID" ColumnName="RoomModelRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomModels">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.RoomModel)">
+        <MappingFragment StoreEntitySet="RoomModels">
+          <ScalarProperty Name="RID" ColumnName="RID" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Floor" ColumnName="Floor" />
+          <ScalarProperty Name="DormitoryModelDID" ColumnName="DormitoryModelDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuButtonModels">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.MenuButtonModel)">
+        <MappingFragment StoreEntitySet="MenuButtonModels">
+          <ScalarProperty Name="MBID" ColumnName="MBID" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="ImageSource" ColumnName="ImageSource" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+          <ScalarProperty Name="ViewName" ColumnName="ViewName" />
+          <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserModelEmployeeModel" TypeName="DatabaseModel.UserModelEmployeeModel" StoreEntitySet="EmployeeModels">
+      <EndProperty Name="UserModel">
+        <ScalarProperty Name="UID" ColumnName="UserModel_UID" />
+      </EndProperty>
+      <EndProperty Name="EmployeeModel">
+        <ScalarProperty Name="UID" ColumnName="UID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserModelResidentModel" TypeName="DatabaseModel.UserModelResidentModel" StoreEntitySet="ResidentModels">
+      <EndProperty Name="UserModel">
+        <ScalarProperty Name="UID" ColumnName="UserModel_UID" />
+      </EndProperty>
+      <EndProperty Name="ResidentModel">
+        <ScalarProperty Name="UID" ColumnName="UID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

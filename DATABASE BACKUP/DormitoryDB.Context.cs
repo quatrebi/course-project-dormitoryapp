@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DormitoryApp
+namespace DormitoryApp.DATABASE_BACKUP
 {
     using System;
     using System.Data.Entity;

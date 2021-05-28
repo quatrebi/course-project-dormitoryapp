@@ -4,7 +4,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:root="clr-namespace:DormitoryApp"
-      xmlns:local="clr-namespace:DormitoryApp.Views"
       xmlns:viewmodels="clr-namespace:DormitoryApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:HumansViewModel}"
       mc:Ignorable="d">
     <Page.Resources>

@@ -7,29 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DormitoryApp
+namespace DormitoryApp.DATABASE_BACKUP
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Room
+    public partial class Dormitory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Room()
+        public Dormitory()
         {
             this.DormitoryInfo = new HashSet<DormitoryInfo>();
-            this.EmployeeLog = new HashSet<EmployeeLog>();
+            this.Room = new HashSet<Room>();
         }
     
-        public int RID { get; set; }
-        public short Number { get; set; }
-        public short Floor { get; set; }
-        public int DormitoryDID { get; set; }
+        public int DID { get; set; }
+        public string Name { get; set; }
+        public int NumberOfFloors { get; set; }
+        public int RoomsPerFloor { get; set; }
+        public int CitizensPerRoom { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DormitoryInfo> DormitoryInfo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeLog> EmployeeLog { get; set; }
-        public virtual Dormitory Dormitory { get; set; }
+        public virtual ICollection<Room> Room { get; set; }
     }
 }

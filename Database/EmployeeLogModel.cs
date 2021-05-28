@@ -7,18 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DormitoryApp
+namespace DormitoryApp.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Human
+    public partial class EmployeeLogModel
     {
-        public int HID { get; set; }
-        public string Surname { get; set; }
-        public string Name { get; set; }
-        public string Patronymic { get; set; }
+        public int ELID { get; set; }
+        public string Description { get; set; }
+        public System.DateTime Datetime { get; set; }
+        public int EmployeeModelUID { get; set; }
+        public int RoomModelRID { get; set; }
     
-        public virtual Account Account { get; set; }
+        public virtual EmployeeModel EmployeeModel { get; set; }
+        public virtual RoomModel RoomModel { get; set; }
     }
 }

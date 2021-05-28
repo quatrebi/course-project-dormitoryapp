@@ -9,7 +9,6 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -26,6 +25,10 @@ namespace DormitoryApp.Views
             MouseLeftButtonDown += App.Window_DragMove;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) => this.DialogResult = true;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
+        }
     }
 }

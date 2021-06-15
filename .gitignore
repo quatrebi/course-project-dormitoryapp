@@ -1,4 +1,9 @@
 Migrations/*
-.vs/*
-obj/*
-bin/*
+/.vs/*
+/obj/*
+/bin/*
+/DATABASE BACKUP/*
+/VIEWMODELS BACKUP/*
+/VIEWS BACKUP/*
+*.docx
+*.cd

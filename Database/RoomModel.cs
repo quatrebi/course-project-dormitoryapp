@@ -25,6 +25,8 @@ namespace DormitoryApp.Database
         public int Number { get; set; }
         public int Floor { get; set; }
         public int DormitoryModelDID { get; set; }
+        public double HeatSupply { get; set; }
+        public double Electricity { get; set; }
     
         public virtual DormitoryModel DormitoryModel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

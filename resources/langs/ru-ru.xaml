@@ -26,6 +26,8 @@
     <sys:String x:Key="i18n-Room">Комната</sys:String>
     <sys:String x:Key="i18n-RoomNumber">Номер комнаты</sys:String>
     <sys:String x:Key="i18n-RoomFloor">Этаж комнаты</sys:String>
+    <sys:String x:Key="i18n-HeatSupply">Теплоснабжение</sys:String>
+    <sys:String x:Key="i18n-Electricity">Электроэнергия</sys:String>
     
     <sys:String x:Key="i18n-Dormitory">Общежитие</sys:String>
     <sys:String x:Key="i18n-DormitoryName">Название общежития</sys:String>
@@ -66,6 +68,7 @@
     <sys:String x:Key="i18n-Cancel">Отменить</sys:String>
     <sys:String x:Key="i18n-Enter">Войти</sys:String>
 
+    <sys:String x:Key="i18n-ChangeDormitory">Сменить общежитие</sys:String>
     <sys:String x:Key="i18n-Unknown">Неизвестно</sys:String>
     <sys:String x:Key="i18n-UnknownError">Неизвестная ошибка</sys:String>
     <sys:String x:Key="i18n-NullReferenceError">Информация недоступна! Обратитесь к администраторам.</sys:String>

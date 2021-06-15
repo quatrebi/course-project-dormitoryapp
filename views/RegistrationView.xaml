@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:root="clr-namespace:DormitoryApp"
-        xmlns:local="clr-namespace:DormitoryApp.Views" xmlns:viewmodels="clr-namespace:DormitoryApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ModelViewModel}"
+        xmlns:local="clr-namespace:DormitoryApp.Views"
+        xmlns:viewmodels="clr-namespace:DormitoryApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ModelViewModel}"
         mc:Ignorable="d" SizeToContent="WidthAndHeight" x:Name="RegistrationViewWindow"
         WindowStartupLocation="CenterScreen" Title="{DynamicResource i18n-Registration}">
     <Window.Resources>
@@ -18,6 +19,7 @@
                     </Style>
                     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
                         <Setter Property="MinWidth" Value="200"/>
+                        <Setter Property="MaxWidth" Value="400"/>
                     </Style>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BorderStyle}">
                         <Setter Property="Background" Value="{DynamicResource FrostedGlassBrush}"/>
@@ -29,10 +31,12 @@
                         <TextBlock HorizontalAlignment="Center" Style="{DynamicResource Heading 2}" Text="{DynamicResource i18n-Account}"/>
 
                         <TextBlock Text="{DynamicResource i18n-Login}"/>
-                        <TextBox Text="{Binding UserModel.Username}"/>
+                        <TextBox Text="{Binding UserModel.Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 TextChanged="Username_Validation"/>
 
                         <TextBlock Text="{DynamicResource i18n-Password}"/>
-                        <TextBox Text="{Binding UserModel.Password}"/>
+                        <TextBox Text="{Binding UserModel.Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 TextChanged="Password_Validation"/>
 
                         <TextBlock Text="{DynamicResource i18n-Surname}"/>
                         <TextBox Text="{Binding UserModel.Surname}"/>
@@ -54,16 +58,19 @@
                                  IsEnabled="False" IsReadOnly="True"/>
 
                         <TextBlock Text="{DynamicResource i18n-RoomNumber}"/>
-                        <TextBox Text="{Binding RoomModel.Number}"/>
-
+                        <!--<TextBox Text="{Binding RoomModel.Number}"/>-->
+                        <Border Style="{DynamicResource BorderStyle}">
+                            <ComboBox SelectedIndex="0" Loaded="NumberComboBox_Loaded" SelectionChanged="ComboBox_SelectionChanged"/>
+                        </Border>
+                        
                         <TextBlock Text="{DynamicResource i18n-OrderNumber}"/>
                         <TextBox Text="{Binding OrderNumber}"/>
 
                         <TextBlock Text="{DynamicResource i18n-CheckInDate}"/>
-                        <TextBox Text="{Binding CheckInDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                        <TextBox IsEnabled="False" Text="{Binding CheckInDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
 
                         <TextBlock Text="{DynamicResource i18n-CheckOutDate}"/>
-                        <TextBox Text="{Binding CheckOutDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                        <TextBox IsEnabled="False" Text="{Binding CheckOutDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
 
                     </StackPanel>
                 </Border>
@@ -95,6 +102,7 @@
                     </Style>
                     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}">
                         <Setter Property="MinWidth" Value="200"/>
+                        <Setter Property="MaxWidth" Value="400"/>
                     </Style>
                     <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BorderStyle}">
                         <Setter Property="Background" Value="{DynamicResource FrostedGlassBrush}"/>
@@ -106,10 +114,12 @@
                         <TextBlock HorizontalAlignment="Center" Style="{DynamicResource Heading 2}" Text="{DynamicResource i18n-Account}"/>
 
                         <TextBlock Text="{DynamicResource i18n-Login}"/>
-                        <TextBox Text="{Binding UserModel.Username}"/>
+                        <TextBox Text="{Binding UserModel.Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 TextChanged="Username_Validation"/>
 
                         <TextBlock Text="{DynamicResource i18n-Password}"/>
-                        <TextBox Text="{Binding UserModel.Password}"/>
+                        <TextBox Text="{Binding UserModel.Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 TextChanged="Password_Validation"/>
 
                         <TextBlock Text="{DynamicResource i18n-Surname}"/>
                         <TextBox Text="{Binding UserModel.Surname}"/>
@@ -153,163 +163,18 @@
     </Window.Resources>
     <Border Style="{DynamicResource BorderStyle}" Background="{DynamicResource GlassBrush}">
         <StackPanel>
-            <TextBlock Margin="0, 32, 0, 0" Style="{DynamicResource Heading 1}" HorizontalAlignment="Center" Text="{DynamicResource i18n-Registration}"/>
-            <ListBox Margin="24" Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding DisplayedModels}" ItemTemplateSelector="{StaticResource TemplateSelector}"/>
+            <TextBlock Margin="0, 32, 0, 0" Style="{DynamicResource Heading 1}"
+                       HorizontalAlignment="Center" Text="{DynamicResource i18n-Registration}"/>
+            <ListBox Margin="24" Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding DisplayedModels}"
+                     ItemTemplateSelector="{StaticResource TemplateSelector}"/>
             <StackPanel Margin="0, 0, 0, 24"  HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Margin="0, 0, 24, 0" FontSize="18" Padding="48, 12" IsDefault="True"
-                        Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Style="{DynamicResource ButtonStyle}" Content="{DynamicResource i18n-Accept}" Click="Button_Click"/>
+                <Button IsEnabled="False" x:Name="AcceptButton" Margin="0, 0, 24, 0" FontSize="18" Padding="48, 12" IsDefault="True"
+                        Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}"
+                        Style="{DynamicResource ButtonStyle}" Content="{DynamicResource i18n-Accept}" Click="Button_Click"/>
                 <Button FontSize="18" Padding="48, 12" IsCancel="True"
-                        Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Style="{DynamicResource ButtonStyle}" Content="{DynamicResource i18n-Cancel}"/>
+                        Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}"
+                        Style="{DynamicResource ButtonStyle}" Content="{DynamicResource i18n-Cancel}"/>
             </StackPanel>
         </StackPanel>
     </Border>
 </Window>
-
-
-
-<!--<Border Background="{DynamicResource GlassBrush}" BorderBrush="{DynamicResource SecondaryBrush}" BorderThickness="1">
-    <Grid Margin="16">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <TextBlock Style="{DynamicResource TextBlockStyle}" FontSize="32" HorizontalAlignment="Center" FontWeight="Bold" Text="{DynamicResource i18n-Registration}"/>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Border Margin="16" Padding="10" VerticalAlignment="Top" Background="{DynamicResource DefaultGradient}">
-                <StackPanel Margin="16">
-                    <TextBlock FontSize="24" HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle}" Text="{DynamicResource i18n-Citizen}"/>
-                    <StackPanel>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-Surname}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding CurrentHuman.Surname}"/>
-                        </Border>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-Name}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding CurrentHuman.Name}"/>
-                        </Border>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-Patronymic}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding CurrentHuman.Patronymic}"/>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            <Border Grid.Column="1" Margin="16" VerticalAlignment="Top" Padding="10" Background="{DynamicResource DefaultGradient}">
-                <StackPanel Margin="16">
-                    <TextBlock FontSize="24" HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle}" Text="{DynamicResource i18n-Account}"/>
-                    <StackPanel>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-Login}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding CurrentHuman.Account.Username}"/>
-                        </Border>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-Password}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding CurrentHuman.Account.Password}"/>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            <Border Margin="16" Grid.Row="1" VerticalAlignment="Top"  Padding="10" Background="{DynamicResource DefaultGradient}">
-                <StackPanel Margin="16">
-                    <TextBlock FontSize="24" HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle}" Text="{DynamicResource i18n-DormitoryInfo}"/>
-                    <StackPanel>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-Dormitory}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <ComboBox ItemsSource="{Binding Dormitories}"  SelectedIndex="0" SelectedItem="{Binding SelectedDormitory}"
-                                          Foreground="{DynamicResource SecondaryBrush}" Background="{x:Null}" BorderBrush="{x:Null}">
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ComboBoxItem}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Background" Value="{x:Null}"/>
-                                                <Setter Property="Foreground" Value="Red"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                        <Setter Property="Background" Value="{x:Null}"/>
-                                        <Setter Property="Content" Value="{Binding Name}"/>
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
-                            </ComboBox>
-                        </Border>
-                        <StackPanel>
-                            <StackPanel.Style>
-                                <Style TargetType="{x:Type StackPanel}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsCitizen}" Value="False">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </StackPanel.Style>
-                            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-RoomFloor}"/>
-                            <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                                <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding GetCitizen.DormitoryInfo.Room.Number}"/>
-                            </Border>
-                            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-RoomNumber}"/>
-                            <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                                <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding GetCitizen.DormitoryInfo.Room.Floor}"/>
-                            </Border>
-                            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-OrderNumber}"/>
-                            <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                                <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding GetCitizen.DormitoryInfo.OrderNumber}"/>
-                            </Border>
-                            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-CheckInDate}"/>
-                            <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                                <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding GetCitizen.DormitoryInfo.CheckInDate}"/>
-                            </Border>
-                            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-CheckOutDate}"/>
-                            <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                                <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding GetCitizen.DormitoryInfo.CheckOutDate}"/>
-                            </Border>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            <Border Margin="16" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1" Padding="10" Background="{DynamicResource DefaultGradient}">
-                <Border.Style>
-                    <Style TargetType="{x:Type Border}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsCitizen}" Value="False">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Style>
-                <StackPanel Margin="16">
-                    <TextBlock FontSize="24" HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle}" Text="{DynamicResource i18n-UniversityInfo}"/>
-                    <StackPanel>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-University}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding GetCitizen.UniversityInfo.University}"/>
-                        </Border>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-Faculty}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding GetCitizen.UniversityInfo.Faculty}"/>
-                        </Border>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-Specialty}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding GetCitizen.UniversityInfo.Specialty}"/>
-                        </Border>
-                        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="16, 4" Text="{DynamicResource i18n-GroupNumber}"/>
-                        <Border Margin="0, 0, 0, 16" CornerRadius="20" Background="{DynamicResource PrimaryBrush}" Padding="16, 8">
-                            <TextBox CaretBrush="{DynamicResource SecondaryBrush}"  Foreground="{DynamicResource SecondaryBrush}" Text="{Binding GetCitizen.UniversityInfo.GroupNumber}"/>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-        </Grid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button IsDefault="True" Click="Button_Click" Padding="32, 8" Content="{DynamicResource i18n-Next}"/>
-            <Button IsCancel="True" Margin="32, 0, 0, 0" Padding="32, 8" Content="{DynamicResource i18n-Failure}"/>
-        </StackPanel>
-    </Grid>
-</Border>-->

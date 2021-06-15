@@ -26,7 +26,10 @@
                             <TextBlock Style="{DynamicResource Heading 2}" Text="{Binding LocalUser.Surname}"/>
                             <TextBlock Margin="16, 0, 0, 0" Style="{DynamicResource Heading 2}" Text="{Binding LocalUser.Name}"/>
                         </StackPanel>
-                        <TextBlock Style="{DynamicResource Heading 4}" FontSize="14" Text="{Binding LocalUser.ResidentModel.RoomModel.DormitoryModel.Name}"/>
+                        <Grid>
+                            <TextBlock Style="{DynamicResource Heading 4}" FontSize="14" Text="{Binding LocalUser.ResidentModel.RoomModel.DormitoryModel.Name}"/>
+                            <TextBlock Style="{DynamicResource Heading 4}" FontSize="14" Text="{Binding LocalUser.EmployeeModel.DormitoryModel.Name}"/>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
                 <ListBox Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding Buttons}" SelectedItem="{Binding SelectedButton}"

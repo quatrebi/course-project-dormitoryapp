@@ -230,15 +230,16 @@
       <LastGenOutput>DatabaseModel.cs</LastGenOutput>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </Content>
+    <Resource Include="resources\images\icons\rooms.png" />
+    <Resource Include="resources\images\icons\citizens.png" />
+    <Resource Include="resources\images\icons\dormitories.png" />
+    <Resource Include="resources\images\icons\employees.png" />
+    <Resource Include="resources\images\icons\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DATABASE BACKUP\" />
-    <Folder Include="VIEWMODELS BACKUP\" />
-    <Folder Include="VIEWS BACKUP\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

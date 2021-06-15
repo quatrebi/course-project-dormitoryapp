@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e90adac20c6b439fbb7c999a5cf2f3ce" Name="Base" ZoomLevel="90" DisplayType="true" >
-        <EntityTypeShape EntityType="DatabaseModel.UserModel" Width="2.125" PointX="0.5" PointY="3.75" />
-        <EntityTypeShape EntityType="DatabaseModel.DormitoryModel" Width="2.5" PointX="3.125" PointY="4.125" />
-        <EntityTypeShape EntityType="DatabaseModel.EmployeeModel" Width="2.125" PointX="2.875" PointY="0.5" />
+        <EntityTypeShape EntityType="DatabaseModel.UserModel" Width="2.125" PointX="0.5" PointY="3.25" />
+        <EntityTypeShape EntityType="DatabaseModel.DormitoryModel" Width="2.5" PointX="3.125" PointY="3.375" />
+        <EntityTypeShape EntityType="DatabaseModel.EmployeeModel" Width="2.125" PointX="3" PointY="0.5" />
         <EntityTypeShape EntityType="DatabaseModel.EmployeeLogModel" Width="2" PointX="7" PointY="0.625" />
-        <EntityTypeShape EntityType="DatabaseModel.ResidentModel" Width="2.125" PointX="2.75" PointY="7.25" />
-        <EntityTypeShape EntityType="DatabaseModel.RoomModel" Width="2.625" PointX="6.375" PointY="7.5" />
+        <EntityTypeShape EntityType="DatabaseModel.ResidentModel" Width="2.125" PointX="2.75" PointY="6.625" />
+        <EntityTypeShape EntityType="DatabaseModel.RoomModel" Width="2.625" PointX="6.375" PointY="6.75" />
         <AssociationConnector Association="DatabaseModel.UserModelEmployeeModel" />
         <AssociationConnector Association="DatabaseModel.UserModelResidentModel" />
         <AssociationConnector Association="DatabaseModel.DormitoryModelRoomModel" />

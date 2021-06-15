@@ -20,7 +20,7 @@ namespace DormitoryApp.Database
             this.EmployeeLogModel = new HashSet<EmployeeLogModel>();
         }
     
-        public int UID { get; set; }
+        public int EID { get; set; }
         public string Position { get; set; }
         public int DormitoryModelDID { get; set; }
     

@@ -17,6 +17,9 @@ namespace DormitoryApp.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DormitoryModel()
         {
+            this.NumberOfFloors = 1;
+            this.RoomsPerFloor = 1;
+            this.CitizensPerRoom = 1;
             this.RoomModel = new HashSet<RoomModel>();
             this.EmployeeModel = new HashSet<EmployeeModel>();
         }
@@ -25,6 +28,7 @@ namespace DormitoryApp.Database
         public string Name { get; set; }
         public int NumberOfFloors { get; set; }
         public int RoomsPerFloor { get; set; }
+        public int CitizensPerRoom { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoomModel> RoomModel { get; set; }

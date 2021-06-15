@@ -44,6 +44,8 @@ namespace DormitoryApp.ViewModels
         public RelayCommand LoadPageCommand => m_loadPageCommand ??
             (m_loadPageCommand = new RelayCommand(obj =>
             {
+                if (obj == null) return;
+
                 // OBJ MUST BE A MENUBUTTON OR DATABASE MODEL
                 Console.WriteLine("LoadPageCommand EXECUTED");
                 string pageName = string.Empty;
@@ -73,6 +75,12 @@ namespace DormitoryApp.ViewModels
 
                 using (DatabaseModelContext db = new DatabaseModelContext())
                 {
+                    db.DormitoryModels.Load();
+                    db.UserModels.Load();
+                    db.RoomModels.Load();
+                    db.ResidentModels.Load();
+                    db.EmployeeModels.Load();
+
                     if (viewmodel is ModelViewModel)
                     {
                         var modelvm = viewmodel as ModelViewModel;
@@ -87,24 +95,32 @@ namespace DormitoryApp.ViewModels
                     }
                     else if (viewmodel is CollectionViewModel)
                     {
-                        var collectionvm = viewmodel as CollectionViewModel;
 
-                        db.UserModels.Load();
+                        var collectionvm = viewmodel as CollectionViewModel;
                         if (modelType == typeof(ResidentModel))
-                            collectionvm.Models = new ObservableCollection<object>(db.ResidentModels.Prepend(new ResidentModel()
-                            {
-                                UserModel = new UserModel()
+                        {
+                            if (LocalUser.EmployeeModel == null) return;
+                            collectionvm.Models = new ObservableCollection<object>(db.ResidentModels
+                                .Where(x => x.RoomModel.DormitoryModelDID == LocalUser.EmployeeModel.DormitoryModelDID).Prepend(new ResidentModel()
                                 {
-                                    Permission = 1
-                                },
-                                RoomModel = new RoomModel()
-                                {
-                                    DormitoryModel = LocalUser.EmployeeModel.DormitoryModel,
-                                    DormitoryModelDID = LocalUser.EmployeeModel.DormitoryModelDID
-                                }
-                            }));
+                                    CheckInDate = DateTime.Now,
+                                    CheckOutDate = DateTime.Now.AddMonths(6),
+                                    UserModel = new UserModel()
+                                    {
+                                        Permission = 1
+                                    },
+                                    RoomModel = new RoomModel()
+                                    {
+                                        DormitoryModel = LocalUser.EmployeeModel.DormitoryModel,
+                                        DormitoryModelDID = LocalUser.EmployeeModel.DormitoryModelDID
+                                    }
+                                }));
+                        }
                         if (modelType == typeof(EmployeeModel))
-                            collectionvm.Models = new ObservableCollection<object>(db.EmployeeModels.Prepend(new EmployeeModel()
+                        {
+                            if (LocalUser.EmployeeModel == null) return;
+                            collectionvm.Models = new ObservableCollection<object>(db.EmployeeModels
+                                .Where(x => x.DormitoryModelDID == LocalUser.EmployeeModel.DormitoryModelDID).Prepend(new EmployeeModel()
                             {
                                 UserModel = new UserModel()
                                 {
@@ -113,10 +129,11 @@ namespace DormitoryApp.ViewModels
                                 DormitoryModel = LocalUser.EmployeeModel.DormitoryModel,
                                 DormitoryModelDID = LocalUser.EmployeeModel.DormitoryModelDID
                             }));
+                        }
                         if (modelType == typeof(DormitoryModel))
                             collectionvm.Models = new ObservableCollection<object>(db.DormitoryModels.Prepend(new DormitoryModel()));
                         if (modelType == typeof(RoomModel))
-                            collectionvm.Models = new ObservableCollection<object>(db.RoomModels);
+                            collectionvm.Models = new ObservableCollection<object>(db.RoomModels.Where(x => x.DormitoryModelDID == LocalUser.EmployeeModel.DormitoryModelDID));
                     }
                 }
 
@@ -141,32 +158,24 @@ namespace DormitoryApp.ViewModels
                             {
                                 db.SaveChanges();
                             }
-                            catch (System.Data.Entity.Validation.DbEntityValidationException e)
-                            {
-                                string rs = "";
-                                foreach (var eve in e.EntityValidationErrors)
-                                {
-                                    rs = string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                                    Console.WriteLine(rs);
-
-                                    foreach (var ve in eve.ValidationErrors)
-                                    {
-                                        rs += "<br />" + string.Format("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                                    }
-                                }
-                                throw new Exception(rs);
-                            }
+                            catch { return; }
                             List<RoomModel> rooms = new List<RoomModel>(dmodel.NumberOfFloors * dmodel.RoomsPerFloor);
                             for (int i = 0; i < rooms.Capacity; i++)
                             {
+                                var rand = new Random(DateTime.Now.Millisecond);
                                 rooms.Add(new RoomModel()
                                 {
                                     DormitoryModelDID = dmodel.DID,
                                     Floor = i % dmodel.NumberOfFloors + 1,
-                                    Number = i + 1
+                                    Number = i + 1,
+                                    HeatSupply = rand.NextDouble() * rand.Next(40, 160) * App.HeatSupplyPerUnit,
+                                    Electricity = rand.NextDouble() * rand.Next(1000, 3000) * App.ElectricityPerUnit
                                 });
                             }
                             db.RoomModels.AddRange(rooms);
+                            db.SaveChanges();
+                            MainViewModel.Instance.LoadPageCommand.Execute(MainViewModel.Instance.SelectedButton);
+                            return;
                         }
                         else if (obj is EmployeeLogModel)
                         {
@@ -197,7 +206,6 @@ namespace DormitoryApp.ViewModels
                             rmodel.UserModel.Password = App.GetHash(rmodel.UserModel.Password);
                             db.UserModels.Add(rmodel.UserModel);
                             db.SaveChanges();
-                            rmodel.UID = rmodel.UserModel.UID;
                             rmodel.RoomModelRID = db.RoomModels.Where(x => x.Number == rmodel.RoomModel.Number &&
                                                                       x.DormitoryModelDID == rmodel.RoomModel.DormitoryModelDID).Select(x => x.RID).FirstOrDefault();
                             rmodel.RoomModel = null;
@@ -209,12 +217,12 @@ namespace DormitoryApp.ViewModels
                             emodel.UserModel.Password = App.GetHash(emodel.UserModel.Password);
                             db.UserModels.Add(emodel.UserModel);
                             db.SaveChanges();
-                            emodel.UID = emodel.UserModel.UID;
 
                             emodel.DormitoryModel = null;
                             db.EmployeeModels.Add(emodel);
                         }
                         db.SaveChanges();
+
                     }
                     MainViewModel.Instance.LoadPageCommand.Execute(MainViewModel.Instance.SelectedButton);
                 }));

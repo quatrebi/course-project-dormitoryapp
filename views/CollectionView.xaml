@@ -11,22 +11,22 @@
         <root:ModelTemplateSelector x:Key="TemplateSelector"/>
 
         <DataTemplate x:Key="ResidentModelTemplate">
-            <ContentControl Width="170" Margin="24">
+            <ContentControl Width="170" Height="290" Margin="24">
                 <ContentControl.Style>
                     <Style TargetType="{x:Type ContentControl}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding UID}" Value="0">
+                            <DataTrigger Binding="{Binding RID}" Value="0">
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ContentControl}">
-                                            <RadioButton Style="{DynamicResource ButtonStyle}" Background="{DynamicResource DefaultGradient}" BorderBrush="{DynamicResource PrimaryBrush}"
+                                            <Button Style="{DynamicResource ButtonStyle}" Background="{DynamicResource DefaultGradient}" BorderBrush="{DynamicResource PrimaryBrush}"
                                                          Command="{Binding DataContext.AddModelCommand, ElementName=CollectionViewPage}" BorderThickness="2"
-                                                         CommandParameter="{Binding DataContext.SelectedModel, ElementName=CollectionViewPage}">
-                                                <RadioButton.Content>
+                                                         CommandParameter="{Binding DataContext.FirstModel, ElementName=CollectionViewPage}">
+                                                <Button.Content>
                                                     <Image Width="64" Source="/DormitoryApp;component/resources/images/icons/home.png"/>
 
-                                                </RadioButton.Content>
-                                            </RadioButton>
+                                                </Button.Content>
+                                            </Button>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
@@ -69,17 +69,17 @@
         </DataTemplate>
 
         <DataTemplate x:Key="EmployeeModelTemplate">
-            <ContentControl Width="170" Margin="24">
+            <ContentControl Width="170" Height="290" Margin="24">
                 <ContentControl.Style>
                     <Style TargetType="{x:Type ContentControl}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding UID}" Value="0">
+                            <DataTrigger Binding="{Binding EID}" Value="0">
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ContentControl}">
                                             <Button Style="{DynamicResource ButtonStyle}" Background="{DynamicResource DefaultGradient}" BorderBrush="{DynamicResource PrimaryBrush}"
                                                             Command="{Binding DataContext.AddModelCommand, ElementName=CollectionViewPage}" BorderThickness="2"
-                                                            CommandParameter="{Binding DataContext.SelectedModel, ElementName=CollectionViewPage}">
+                                                            CommandParameter="{Binding DataContext.FirstModel, ElementName=CollectionViewPage}">
                                                 <Button.Content>
                                                     <Image Width="64" Source="/DormitoryApp;component/resources/images/icons/home.png"/>
 
@@ -201,9 +201,9 @@
 
 
                                                     </Grid>
-                                                    <RadioButton HorizontalAlignment="Center" Style="{DynamicResource ButtonStyle}" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" FontSize="18"
+                                                    <Button HorizontalAlignment="Center" Style="{DynamicResource ButtonStyle}" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" FontSize="18"
                                                             Command="{Binding DataContext.AddModelCommand, ElementName=CollectionViewPage}" Padding="48, 8" Content="{DynamicResource i18n-Next}"
-                                                            CommandParameter="{Binding DataContext.SelectedModel, ElementName=CollectionViewPage}"/>
+                                                            CommandParameter="{Binding DataContext.FirstModel, ElementName=CollectionViewPage}"/>
                                                 </StackPanel>
                                             </Border>
                                         </ControlTemplate>
@@ -256,7 +256,8 @@
         </DataTemplate>
     </Page.Resources>
 
-    <ListBox Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedModel}" ItemTemplateSelector="{StaticResource TemplateSelector}">
+    <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource ListBoxStyle}"
+             ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedModel}" ItemTemplateSelector="{StaticResource TemplateSelector}">
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel Width="900"  HorizontalAlignment="Center"/>
@@ -267,7 +268,8 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                            <RadioButton Template="{DynamicResource RadioButtonIsNull}" IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                            <RadioButton Template="{DynamicResource RadioButtonIsNull}"
+                                         IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                          Command="{Binding DataContext.Instance.LoadPageCommand, ElementName=CollectionViewPage}"
                                          CommandParameter="{Binding DataContext.SelectedModel, ElementName=CollectionViewPage}">
                                 <ContentPresenter/>

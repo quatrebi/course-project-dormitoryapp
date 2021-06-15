@@ -56,7 +56,7 @@ namespace DormitoryApp.ViewModels
                 Datetime = DateTime.Now,
                 RoomModel = DisplayedModel as RoomModel,
                 RoomModelRID = (DisplayedModel as RoomModel).RID,
-                EmployeeModelUID = MainViewModel.Instance.LocalUser.EmployeeModel.UID,
+                EmployeeModelUID = MainViewModel.Instance.LocalUser.EmployeeModel.EID,
             });
             set
             {

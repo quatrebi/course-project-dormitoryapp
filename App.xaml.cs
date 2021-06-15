@@ -13,16 +13,20 @@ namespace DormitoryApp
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
+    /// 
+
 
     public partial class App : Application
     {
         public const double GoldenRatio = 1.61803399;
+        public static double HeatSupplyPerUnit = 21.9245;
+        public static double ElectricityPerUnit = 0.1778;
 
         public static void Window_DragMove(object sender, MouseButtonEventArgs e) => (sender as Window).DragMove();
         private void AppShutdown(object sender, RoutedEventArgs e) => Current.Shutdown();
 
         public static string GetHash(string input)
-            => Convert.ToBase64String(MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input)));
+            => Convert.ToBase64String(MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input ?? string.Empty)));
     }
 
     public class ModelTemplateSelector : DataTemplateSelector

@@ -6,6 +6,7 @@
 
     <Style TargetType="{x:Type Window}" x:Key="WindowStyle">
         <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="Icon" Value="/DormitoryApp;component/resources/images/icons/icon.png"/>
         <Setter Property="WindowStyle" Value="None"/>
         <Setter Property="FontFamily" Value="/DormitoryApp;component/resources/fonts/#Gardens CM"/>
         <Setter Property="FontSize" Value="14"/>

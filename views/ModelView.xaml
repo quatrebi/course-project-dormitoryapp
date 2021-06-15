@@ -139,6 +139,27 @@
                         <TextBlock Text="{Binding Patronymic}"/>
                     </StackPanel>
                 </Border>
+                <Border Style="{DynamicResource BorderStyle}" Margin="24" Padding="24, 12, 24, 24" Background="{DynamicResource DefaultGradient}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="32" Source="/DormitoryApp;component/resources/images/icons/home.png"/>
+                            <TextBlock Margin="8, 0" VerticalAlignment="Center" Style="{DynamicResource Heading 2}"
+                                           Text="{DynamicResource i18n-ChangeDormitory}"/>
+                        </StackPanel>
+                        <ComboBox Grid.Row="1" Margin="0, 16, 0, 0" x:Name="DormitoryChanged"
+                                  SelectionChanged="DormitoryChanged_SelectionChanged" Loaded="DormitoryChanged_Loaded">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{DynamicResource Heading 4}" Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                </Border>
             </StackPanel>
         </DataTemplate>
 
@@ -193,7 +214,6 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Column="1" Grid.Row="0"  Text="{Binding DormitoryModel.Name}"/>
                                 <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Position}"/>
-                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding OrderNumber}"/>
                                 <TextBlock Grid.Row="0" Text="{DynamicResource i18n-Dormitory}"/>
                                 <TextBlock Grid.Row="1" Text="{DynamicResource i18n-EmployeePosition}"/>
                             </Grid>
@@ -212,22 +232,43 @@
         <DataTemplate x:Key="RoomModelTemplate">
             <StackPanel>
                 <Border Margin="0, 32, 0, 0" Style="{DynamicResource BorderStyle}" BorderBrush="White"  Background="{DynamicResource FrostedGlassBrush}">
-                    <StackPanel Margin="18" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <StackPanel.Resources>
-                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Heading 1}">
-                                <Setter Property="Margin" Value="18, 0, 0, 0"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        <TextBlock Text="{DynamicResource i18n-Room}"/>
-                        <TextBlock Text="{Binding Number, StringFormat=№\{0\}}"/>
+                    <StackPanel>
+                        <StackPanel Margin="18" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Heading 1}">
+                                    <Setter Property="Margin" Value="18, 0, 0, 0"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <TextBlock Text="{DynamicResource i18n-Room}"/>
+                            <TextBlock Text="{Binding Number, StringFormat=№\{0\}}"/>
+                        </StackPanel>
+                        <Grid HorizontalAlignment="Center" Margin="0, 0, 0, 12">
+                            <Grid.Resources>
+                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Heading 3}">
+                                    <Setter Property="Margin" Value="16, 4"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{DynamicResource i18n-HeatSupply}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding HeatSupply, StringFormat=\{0:.00\} BYR}"/>
+                            <TextBlock Grid.Row="1" Text="{DynamicResource i18n-Electricity}"/>
+                            <TextBlock Grid.Row="1"  Grid.Column="1" Text="{Binding Electricity, StringFormat=\{0:.00\} BYR}"/>
+                        </Grid>
                     </StackPanel>
                 </Border>
                 <StackPanel HorizontalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BorderStyle}">
-                            <Setter Property="Margin" Value="24"/>
-                            <Setter Property="Padding" Value="24, 12, 24, 24"/>
+                            <Setter Property="Margin" Value="24, 12"/>
+                            <Setter Property="Padding" Value="24, 12, 24, 18"/>
                             <Setter Property="Background" Value="{DynamicResource DefaultGradient}"/>
                         </Style>
                     </StackPanel.Resources>
@@ -265,17 +306,18 @@
                                 <TextBlock Margin="8, 0" VerticalAlignment="Center" Style="{DynamicResource Heading 2}"
                                            Text="{DynamicResource i18n-EmployeeLogInfo}"/>
                             </StackPanel>
-                            <ListBox Grid.Row="1" Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding DataContext.EmployeeLogs, ElementName=ModelViewPage}">
+                            <ListBox MaxWidth="700" Grid.Row="1" Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding DataContext.EmployeeLogs, ElementName=ModelViewPage}">
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListBoxItem}">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                    <StackPanel Margin="0, 12">
+                                                    <StackPanel Margin="0, 6">
                                                         <StackPanel.Resources>
-                                                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Heading 2}">
+                                                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Heading 3}">
                                                             <Setter Property="Margin" Value="8, 4"/>
-                                                        </Style>
+                                                            <Setter Property="FontWeight" Value="UltraLight"/>
+                                                            </Style>
                                                         </StackPanel.Resources>
                                                         <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="{Binding Datetime, StringFormat=[\{0:dd.MM.yyyy\ hh:mm:ss\}]}"/>
@@ -298,8 +340,8 @@
         </DataTemplate>
     </Page.Resources>
 
-    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto">
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <ListBox ItemsSource="{Binding DisplayedModels}" ItemTemplateSelector="{StaticResource TemplateSelector}"
-             Margin="64, 16" Style="{DynamicResource ListBoxStyle}"/>
+                Margin="64, 16" Style="{DynamicResource ListBoxStyle}"/>
     </ScrollViewer>
 </Page>

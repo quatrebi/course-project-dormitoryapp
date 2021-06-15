@@ -60,14 +60,15 @@
     </Key>
     <Property Name="DID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="NumberOfFloors" Type="int" Nullable="false" />
-    <Property Name="RoomsPerFloor" Type="int" Nullable="false" />
+    <Property Name="NumberOfFloors" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="RoomsPerFloor" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="CitizensPerRoom" Type="int" Nullable="false" DefaultValue="1" />
   </EntityType>
   <EntityType Name="EmployeeModels">
     <Key>
-      <PropertyRef Name="UID" />
+      <PropertyRef Name="EID" />
     </Key>
-    <Property Name="UID" Type="int" Nullable="false" />
+    <Property Name="EID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Position" Type="nvarchar(max)" Nullable="true" />
     <Property Name="DormitoryModelDID" Type="int" Nullable="false" />
     <Property Name="UserModel_UID" Type="int" Nullable="false" />
@@ -84,16 +85,16 @@
   </EntityType>
   <EntityType Name="ResidentModels">
     <Key>
-      <PropertyRef Name="UID" />
+      <PropertyRef Name="RID" />
     </Key>
-    <Property Name="UID" Type="int" Nullable="false" />
+    <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrderNumber" Type="int" Nullable="false" />
     <Property Name="CheckInDate" Type="datetime" Nullable="false" />
     <Property Name="CheckOutDate" Type="datetime" Nullable="false" />
     <Property Name="University" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Faculty" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Specialty" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="GroupNumber" Type="int" Nullable="true" />
+    <Property Name="GroupNumber" Type="int" Nullable="false" />
     <Property Name="RoomModelRID" Type="int" Nullable="false" />
     <Property Name="UserModel_UID" Type="int" Nullable="false" />
   </EntityType>
@@ -105,6 +106,8 @@
     <Property Name="Number" Type="int" Nullable="false" />
     <Property Name="Floor" Type="int" Nullable="false" />
     <Property Name="DormitoryModelDID" Type="int" Nullable="false" />
+    <Property Name="HeatSupply" Type="float" Nullable="false" />
+    <Property Name="Electricity" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="MenuButtonModels">
     <Key>
@@ -170,7 +173,7 @@
     <End Role="EmployeeLogModel" Type="DatabaseModel.Store.EmployeeLogModels" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EmployeeModel">
-        <PropertyRef Name="UID" />
+        <PropertyRef Name="EID" />
       </Principal>
       <Dependent Role="EmployeeLogModel">
         <PropertyRef Name="EmployeeModelUID" />
@@ -262,16 +265,17 @@
           </Key>
           <Property Name="DID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <Property Name="NumberOfFloors" Type="Int32" Nullable="false" />
-          <Property Name="RoomsPerFloor" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfFloors" Type="Int32" Nullable="false" DefaultValue="1" />
+          <Property Name="RoomsPerFloor" Type="Int32" Nullable="false" DefaultValue="1" />
           <NavigationProperty Name="RoomModel" Relationship="DatabaseModel.DormitoryModelRoomModel" FromRole="DormitoryModel" ToRole="RoomModel" />
           <NavigationProperty Name="EmployeeModel" Relationship="DatabaseModel.DormitoryModelEmployeeModel" FromRole="DormitoryModel" ToRole="EmployeeModel" />
+          <Property Name="CitizensPerRoom" Type="Int32" Nullable="false" DefaultValue="1" />
         </EntityType>
         <EntityType Name="EmployeeModel">
           <Key>
-            <PropertyRef Name="UID" />
+            <PropertyRef Name="EID" />
           </Key>
-          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="EID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Position" Type="String" Nullable="true" />
           <NavigationProperty Name="UserModel" Relationship="DatabaseModel.UserModelEmployeeModel" FromRole="EmployeeModel" ToRole="UserModel" />
           <NavigationProperty Name="DormitoryModel" Relationship="DatabaseModel.DormitoryModelEmployeeModel" FromRole="EmployeeModel" ToRole="DormitoryModel" />
@@ -292,16 +296,16 @@
         </EntityType>
         <EntityType Name="ResidentModel">
           <Key>
-            <PropertyRef Name="UID" />
+            <PropertyRef Name="RID" />
           </Key>
-          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="RID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderNumber" Type="Int32" Nullable="false" />
           <Property Name="CheckInDate" Type="DateTime" Nullable="false" />
           <Property Name="CheckOutDate" Type="DateTime" Nullable="false" />
           <Property Name="University" Type="String" Nullable="true" />
           <Property Name="Faculty" Type="String" Nullable="true" />
           <Property Name="Specialty" Type="String" Nullable="true" />
-          <Property Name="GroupNumber" Type="Int32" Nullable="true" />
+          <Property Name="GroupNumber" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserModel" Relationship="DatabaseModel.UserModelResidentModel" FromRole="ResidentModel" ToRole="UserModel" />
           <NavigationProperty Name="RoomModel" Relationship="DatabaseModel.RoomModelResidentModel" FromRole="ResidentModel" ToRole="RoomModel" />
           <Property Name="RoomModelRID" Type="Int32" Nullable="false" />
@@ -317,6 +321,8 @@
           <Property Name="DormitoryModelDID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ResidentModel" Relationship="DatabaseModel.RoomModelResidentModel" FromRole="RoomModel" ToRole="ResidentModel" />
           <NavigationProperty Name="EmployeeLogModel" Relationship="DatabaseModel.RoomModelEmployeeLogModel" FromRole="RoomModel" ToRole="EmployeeLogModel" />
+          <Property Name="HeatSupply" Type="Double" Nullable="false" />
+          <Property Name="Electricity" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="MenuButtonModel">
           <Key>
@@ -366,7 +372,7 @@
           <End Type="DatabaseModel.EmployeeLogModel" Role="EmployeeLogModel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EmployeeModel">
-              <PropertyRef Name="UID" />
+              <PropertyRef Name="EID" />
             </Principal>
             <Dependent Role="EmployeeLogModel">
               <PropertyRef Name="EmployeeModelUID" />
@@ -423,13 +429,14 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="NumberOfFloors" ColumnName="NumberOfFloors" />
           <ScalarProperty Name="RoomsPerFloor" ColumnName="RoomsPerFloor" />
+          <ScalarProperty Name="CitizensPerRoom" ColumnName="CitizensPerRoom" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EmployeeModels">
       <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.EmployeeModel)">
         <MappingFragment StoreEntitySet="EmployeeModels">
-          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="EID" ColumnName="EID" />
           <ScalarProperty Name="Position" ColumnName="Position" />
           <ScalarProperty Name="DormitoryModelDID" ColumnName="DormitoryModelDID" />
         </MappingFragment>
@@ -449,7 +456,7 @@
     <EntitySetMapping Name="ResidentModels">
       <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.ResidentModel)">
         <MappingFragment StoreEntitySet="ResidentModels">
-          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="RID" ColumnName="RID" />
           <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
           <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
           <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
@@ -468,6 +475,8 @@
           <ScalarProperty Name="Number" ColumnName="Number" />
           <ScalarProperty Name="Floor" ColumnName="Floor" />
           <ScalarProperty Name="DormitoryModelDID" ColumnName="DormitoryModelDID" />
+          <ScalarProperty Name="HeatSupply" ColumnName="HeatSupply" />
+          <ScalarProperty Name="Electricity" ColumnName="Electricity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -488,7 +497,7 @@
         <ScalarProperty Name="UID" ColumnName="UserModel_UID" />
       </EndProperty>
       <EndProperty Name="EmployeeModel">
-        <ScalarProperty Name="UID" ColumnName="UID" />
+        <ScalarProperty Name="EID" ColumnName="EID" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="UserModelResidentModel" TypeName="DatabaseModel.UserModelResidentModel" StoreEntitySet="ResidentModels">
@@ -496,7 +505,7 @@
         <ScalarProperty Name="UID" ColumnName="UserModel_UID" />
       </EndProperty>
       <EndProperty Name="ResidentModel">
-        <ScalarProperty Name="UID" ColumnName="UID" />
+        <ScalarProperty Name="RID" ColumnName="RID" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/27/2021 18:57:09
+-- Date Created: 05/28/2021 08:44:16
 -- Generated from EDMX file: D:\Documents\Visual Studio\DormitoryApp\Database\DatabaseModel.edmx
 -- --------------------------------------------------
 
@@ -86,13 +86,14 @@ CREATE TABLE [dbo].[DormitoryModels] (
     [DID] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [NumberOfFloors] int  NOT NULL,
-    [RoomsPerFloor] int  NOT NULL
+    [RoomsPerFloor] int  NOT NULL,
+    [CitizensPerRoom] int  NOT NULL
 );
 GO
 
 -- Creating table 'EmployeeModels'
 CREATE TABLE [dbo].[EmployeeModels] (
-    [UID] int  NOT NULL,
+    [EID] int IDENTITY(1,1) NOT NULL,
     [Position] nvarchar(max)  NULL,
     [DormitoryModelDID] int  NOT NULL,
     [UserModel_UID] int  NOT NULL
@@ -111,14 +112,14 @@ GO
 
 -- Creating table 'ResidentModels'
 CREATE TABLE [dbo].[ResidentModels] (
-    [UID] int  NOT NULL,
+    [RID] int IDENTITY(1,1) NOT NULL,
     [OrderNumber] int  NOT NULL,
     [CheckInDate] datetime  NOT NULL,
     [CheckOutDate] datetime  NOT NULL,
     [University] nvarchar(max)  NULL,
     [Faculty] nvarchar(max)  NULL,
     [Specialty] nvarchar(max)  NULL,
-    [GroupNumber] int  NULL,
+    [GroupNumber] int  NOT NULL,
     [RoomModelRID] int  NOT NULL,
     [UserModel_UID] int  NOT NULL
 );
@@ -129,7 +130,9 @@ CREATE TABLE [dbo].[RoomModels] (
     [RID] int IDENTITY(1,1) NOT NULL,
     [Number] int  NOT NULL,
     [Floor] int  NOT NULL,
-    [DormitoryModelDID] int  NOT NULL
+    [DormitoryModelDID] int  NOT NULL,
+    [HeatSupply] float  NOT NULL,
+    [Electricity] float  NOT NULL
 );
 GO
 
@@ -160,10 +163,10 @@ ADD CONSTRAINT [PK_DormitoryModels]
     PRIMARY KEY CLUSTERED ([DID] ASC);
 GO
 
--- Creating primary key on [UID] in table 'EmployeeModels'
+-- Creating primary key on [EID] in table 'EmployeeModels'
 ALTER TABLE [dbo].[EmployeeModels]
 ADD CONSTRAINT [PK_EmployeeModels]
-    PRIMARY KEY CLUSTERED ([UID] ASC);
+    PRIMARY KEY CLUSTERED ([EID] ASC);
 GO
 
 -- Creating primary key on [ELID] in table 'EmployeeLogModels'
@@ -172,10 +175,10 @@ ADD CONSTRAINT [PK_EmployeeLogModels]
     PRIMARY KEY CLUSTERED ([ELID] ASC);
 GO
 
--- Creating primary key on [UID] in table 'ResidentModels'
+-- Creating primary key on [RID] in table 'ResidentModels'
 ALTER TABLE [dbo].[ResidentModels]
 ADD CONSTRAINT [PK_ResidentModels]
-    PRIMARY KEY CLUSTERED ([UID] ASC);
+    PRIMARY KEY CLUSTERED ([RID] ASC);
 GO
 
 -- Creating primary key on [RID] in table 'RoomModels'
@@ -259,7 +262,7 @@ ALTER TABLE [dbo].[EmployeeLogModels]
 ADD CONSTRAINT [FK_EmployeeModelEmployeeLogModel]
     FOREIGN KEY ([EmployeeModelUID])
     REFERENCES [dbo].[EmployeeModels]
-        ([UID])
+        ([EID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 

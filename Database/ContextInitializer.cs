@@ -11,10 +11,27 @@ namespace DormitoryApp.Database
     {
         public void InitializeDatabase(DatabaseModelContext db)
         {
-            if (db.UserModels.Find(1) != null) return;
-
             db.UserModels.Load();
+            if (db.UserModels.Find(1) != null) return;
             Console.WriteLine("DATABASE WAS INITIALIZED");
+
+            var dor = new DormitoryModel()
+            {
+                Name = "admindormitory",
+                NumberOfFloors = 1,
+                RoomsPerFloor = 1,
+                CitizensPerRoom = 1
+            };
+            db.DormitoryModels.Add(dor);
+            db.RoomModels.Add(new RoomModel()
+            {
+                DormitoryModelDID = dor.DID,
+                Number = 1,
+                Floor = 1,
+                Electricity = 100,
+                HeatSupply = 100
+            });
+            db.SaveChanges();
 
             db.UserModels.Add(new UserModel()
             {
@@ -24,8 +41,12 @@ namespace DormitoryApp.Database
                 Surname = "Худницкий",
                 Name = "Дмитрий",
                 Patronymic = "Андреевич",
+                EmployeeModel = new EmployeeModel()
+                {
+                    DormitoryModelDID = dor.DID,
+                    Position = "Администратор",
+                }
             });
-
 
             db.MenuButtonModels.AddRange(new List<MenuButtonModel>()
             {

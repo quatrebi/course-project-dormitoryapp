@@ -14,14 +14,14 @@ namespace DormitoryApp.Database
     
     public partial class ResidentModel
     {
-        public int UID { get; set; }
+        public int RID { get; set; }
         public int OrderNumber { get; set; }
         public System.DateTime CheckInDate { get; set; }
         public System.DateTime CheckOutDate { get; set; }
         public string University { get; set; }
         public string Faculty { get; set; }
         public string Specialty { get; set; }
-        public Nullable<int> GroupNumber { get; set; }
+        public int GroupNumber { get; set; }
         public int RoomModelRID { get; set; }
     
         public virtual UserModel UserModel { get; set; }
